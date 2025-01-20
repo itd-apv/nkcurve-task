@@ -7,11 +7,6 @@ import groovy.time.TimeCategory
 import java.sql.DriverManager
 import java.sql.Connection
 import java.sql.Blob
-import java.io.InputStream
-import java.io.BufferedWriter
-import java.io.FileWriter
-import java.io.File
-import java.util.Arrays
 
 // Database connection details
 def url = "jdbc:oracle:thin:@//10.0.0.98:11521/clarity" // Replace with your DB details
@@ -25,9 +20,26 @@ def sql = new Sql(connection)
 // Parameters for the AllocationMigrationJob
 def project = "PR1016"
 def resource = "jasonBerry"
-def fromDate = Date.parse("yyyy-MM-dd", "2025-01-01")
-def toDate = Date.parse("yyyy-MM-dd", "2025-12-31")
 def period = "monthly" // Options: "daily", "weekly", "monthly, "quarterly"
+
+// Method to fetch fromDate and toDate from the inv_investments table
+Map<String, Date> getProjectDates(Sql sql, String project) {
+    def query = """
+        SELECT schedule_start, schedule_finish
+        FROM inv_investments
+        WHERE code = ?
+    """
+    def result = sql.firstRow(query, [project])
+
+    if (result) {
+        Date fromDate = result.schedule_start
+        Date toDate = result.schedule_finish
+        return [fromDate: fromDate, toDate: toDate]
+    } else {
+        println "No dates found for project: ${project}"
+        return null
+    }
+}
 
 // Helper method to extract byte data from the Blob
 byte[] extractBlobData(Blob blob) {
@@ -220,8 +232,15 @@ NkCurve createDefaultNkCurve() {
     }
 }
 
-// Run the allocation migration job
-processAllocations(sql, project, resource, fromDate, toDate, period)
+// Fetch the project dates from the database
+def projectDates = getProjectDates(sql, project)
+if (projectDates) {
+    Date fromDate = projectDates.fromDate
+    Date toDate = projectDates.toDate
+
+    // Run the allocation migration job with the fetched dates
+    processAllocations(sql, project, resource, fromDate, toDate, period)
+}
 
 // Close the database connection after use
 connection.close()
