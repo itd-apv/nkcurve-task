@@ -7,8 +7,8 @@ import groovy.time.TimeCategory
 import java.sql.DriverManager
 import java.sql.Connection
 import java.sql.Blob
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
+import java.io.InputStream
+import java.util.Arrays
 
 // Database connection details
 def url = "jdbc:oracle:thin:@//10.0.0.98:11521/clarity" // Replace with your DB details
@@ -43,53 +43,20 @@ Map<String, Date> getProjectDates(Sql sql, String project) {
     }
 }
 
-// Helper method to convert byte[] to integers (each integer represents seconds)
-List<Integer> convertByteArrayToIntegers(byte[] byteArray) {
-    List<Integer> secondsList = []
-
-    // Ensure that the byte array length is a multiple of 4 for integer conversion
-    int numIntegers = byteArray.length / 4
-
-    for (int i = 0; i < numIntegers; i++) {
-        int start = i * 4
-        int end = start + 4
-        byte[] intBytes = Arrays.copyOfRange(byteArray, start, end)
-
-        // Convert 4 bytes to an integer (assuming little-endian format)
-        int value = ByteBuffer.wrap(intBytes).order(ByteOrder.LITTLE_ENDIAN).getInt()
-        secondsList.add(value)
-    }
-
-    return secondsList
-}
-
-// Helper method to convert seconds to hours
-List<Double> convertSecondsToHours(List<Integer> secondsList) {
-    List<Double> hoursList = []
-
-    secondsList.each { seconds ->
-        // Convert seconds to hours
-        double hours = seconds / 3600.0
-        hoursList.add(hours)
-    }
-
-    return hoursList
-}
-
-// Helper method to extract byte data from the Blob
-byte[] extractBlobData(Blob blob) {
+// Helper method to extract byte data from the Blob and return an NkCurve
+NkCurve extractBlobData(Blob blob) {
     try {
         InputStream inputStream = blob.getBinaryStream()
         byte[] byteArray = inputStream.bytes  // Converts InputStream to byte[]
         inputStream.close()
 
-        // Print the first 50 bytes of the byte array for debugging
+        // Print the first 50 bytes of the byte array
         println "Blob Data (first 50 bytes): " + Arrays.copyOfRange(byteArray, 0, Math.min(50, byteArray.length))
 
-        return byteArray
+        return new NkCurve(byteArray)  // Return NkCurve created from byteArray
     } catch (Exception e) {
         println "Error extracting Blob data: ${e.message}"
-        return []  // Return an empty byte array in case of error
+        return null  // Return null in case of error
     }
 }
 
@@ -108,50 +75,17 @@ NkCurve getAllocationCurve(Sql sql, String project, String resource, String allo
     if (result && result["${allocationType}"] instanceof Blob) {
         println "Allocation curve for ${allocationType} fetched successfully."
 
-        // Extract bytes from Blob (instead of oracle.sql.BLOB)
+        // Extract Blob data and create NkCurve using the helper method
         Blob blob = result["${allocationType}"]
-        byte[] byteArray = extractBlobData(blob)
-
-        // Convert byte array to integers (representing seconds)
-        List<Integer> secondsList = convertByteArrayToIntegers(byteArray)
-
-        // Convert seconds to hours
-        List<Double> hoursList = convertSecondsToHours(secondsList)
-
-        // Create a list of NkSegment objects using the hours
-        List<NkSegment> segments = []
-
-        // For simplicity, we're assuming each allocation spans a fixed time period (e.g., 1 day)
-        // Modify this logic if more accurate time intervals are available from your data
-        Date startDate = new Date()  // Start date (use the actual start date)
-        Date endDate = new Date() + 1  // End date (use actual date intervals)
-
-        hoursList.each { hours ->
-            // Create an NkTime for the start and end dates (dummy values for now)
-            NkTime startTime = new NkTime(startDate)
-            NkTime finishTime = new NkTime(endDate)
-
-            // Create a default NkCalendar (this could be customized if needed)
-            NkCalendar calendar = new NkCalendar()
-
-            // Create an NkSegment with the hours as the allocation rate
-            NkSegment segment = new NkSegment(startTime, finishTime, hours, calendar)
-            segments.add(segment)
-
-            // Move the end date forward by 1 day for the next segment (assuming daily intervals)
-            startDate = endDate
-            endDate = endDate + 1
-        }
-
-        // Return NkCurve using the created segments
-        return new NkCurve(segments)  // This will correctly pass a list of NkSegment objects
+        println "${extractBlobData(blob)}"
+        return extractBlobData(blob)
     } else {
         println "No allocation curve found for ${allocationType}."
         return null
     }
 }
 
-// Method to print the contents of the NkCurve
+// Helper method to print the contents of the NkCurve
 def printNkCurveContents(NkCurve nkCurve) {
     if (nkCurve != null && nkCurve.segments != null) {
         println "NkCurve contains ${nkCurve.segments.size()} segments:"
@@ -185,6 +119,8 @@ void writeToCSV(List<Map<String, Object>> data, String filename) {
 void processAllocations(Sql sql, String project, String resource, Date fromDate, Date toDate, String period) {
     NkCurve softCurve = getAllocationCurve(sql, project, resource, "pralloccurve")
     NkCurve hardCurve = getAllocationCurve(sql, project, resource, "hard_curve")
+    def value = softCurve.getSum(softCurve.getStartDate(),softCurve.getFinishDate())
+
 
     // Print the contents of the fetched curves
     println "Printing Soft Allocation Curve:"
@@ -311,7 +247,3 @@ if (projectDates) {
 
 // Close the database connection after use
 connection.close()
-
-
-
-

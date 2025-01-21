@@ -19,7 +19,6 @@ def sql = new Sql(connection)
 
 // Parameters for the AllocationMigrationJob
 def project = "PR1016"
-def resource = "jasonBerry"
 def period = "monthly" // Options: "daily", "weekly", "monthly, "quarterly"
 
 // Method to fetch fromDate and toDate from the inv_investments table
@@ -42,7 +41,7 @@ Map<String, Date> getProjectDates(Sql sql, String project) {
 }
 
 // Helper method to extract byte data from the Blob
-byte[] extractBlobData(Blob blob) {
+NkCurve extractBlobData(Blob blob) {
     try {
         InputStream inputStream = blob.getBinaryStream()
         byte[] byteArray = inputStream.bytes  // Converts InputStream to byte[]
@@ -51,20 +50,22 @@ byte[] extractBlobData(Blob blob) {
         // Print the first 50 bytes of the byte array
         println "Blob Data (first 50 bytes): " + Arrays.copyOfRange(byteArray, 0, Math.min(50, byteArray.length))
 
-        return byteArray
+        return new NkCurve(byteArray)  // Return NkCurve created from byteArray
     } catch (Exception e) {
         println "Error extracting Blob data: ${e.message}"
-        return []  // Return an empty byte array in case of error
+        return null  // Return null in case of error
     }
 }
 
 // Method to fetch the allocation curve (soft or hard) for the resource in the given project
 NkCurve getAllocationCurve(Sql sql, String project, String resource, String allocationType) {
     def query = """
-        SELECT ${allocationType}
-        FROM prteam
-        WHERE prprojectid = (SELECT id FROM inv_investments WHERE code = ?)
-          AND prresourceid = (SELECT id FROM srm_resources WHERE unique_name = ?)
+        SELECT pt.${allocationType}
+        FROM prteam pt
+        JOIN inv_investments ii ON pt.prprojectid = ii.id
+        JOIN srm_resources sr ON pt.prresourceid = sr.id
+        WHERE ii.code = ?  
+        AND sr.unique_name = ?
     """
     def result = sql.firstRow(query, [project, resource])
 
@@ -75,13 +76,25 @@ NkCurve getAllocationCurve(Sql sql, String project, String resource, String allo
 
         // Extract bytes from Blob (instead of oracle.sql.BLOB)
         Blob blob = result["${allocationType}"]
-        byte[] byteArray = extractBlobData(blob)
-
-        return new NkCurve(byteArray)
+        println "${extractBlobData(blob)}"
+        return extractBlobData(blob)
     } else {
         println "No allocation curve found for ${allocationType}."
         return null
     }
+}
+
+// Method to get all resources for the given project
+List<String> getResourcesForProject(Sql sql, String project) {
+    def query = """
+        SELECT sr.unique_name
+        FROM prteam pt
+        JOIN inv_investments ii ON pt.prprojectid = ii.id
+        JOIN srm_resources sr ON pt.prresourceid = sr.id
+        WHERE ii.code = ?
+    """
+    def result = sql.rows(query, [project])
+    return result.collect { it.unique_name }
 }
 
 // Helper method to print the contents of the NkCurve
@@ -114,60 +127,82 @@ void writeToCSV(List<Map<String, Object>> data, String filename) {
     writer.close()
 }
 
-// Method to split the project duration into time segments (based on period) and fetch the allocation data
-void processAllocations(Sql sql, String project, String resource, Date fromDate, Date toDate, String period) {
-    NkCurve softCurve = getAllocationCurve(sql, project, resource, "pralloccurve")
-    NkCurve hardCurve = getAllocationCurve(sql, project, resource, "hard_curve")
-
-    // Print the contents of the fetched curves
-    println "Printing Soft Allocation Curve:"
-    printNkCurveContents(softCurve)
-
-    println "Printing Hard Allocation Curve:"
-    printNkCurveContents(hardCurve)
-
-    // Handle missing soft curve
-    if (softCurve == null) {
-        println "No soft allocation curve found, terminating job."
-        return
-    }
-
-    // Handle missing hard curve
-    if (hardCurve == null) {
-        println "Hard allocation curve not found, using default allocation value of 0.00."
-        // Create default curve with valid segments
-        hardCurve = createDefaultNkCurve()
-    }
-
+// Method to process allocations with hard curve set to null if not found
+void processAllocations(Sql sql, String project, List<String> resources, Date fromDate, Date toDate, String period) {
     List<Map<String, Object>> allocationData = []
 
-    // Split the duration into segments based on the period (daily, weekly, monthly)
-    use(TimeCategory) {
-        Date currentDate = fromDate
-        while (currentDate <= toDate) {
-            def nextDate = getNextPeriod(currentDate, period)
+    resources.each { resource ->
+        println "Processing allocations for resource: ${resource}"
 
-            // Get the Soft and Hard Allocations for the current period
-            def softAllocation = getAllocationForPeriod(softCurve, currentDate, nextDate)
-            def hardAllocation = getAllocationForPeriod(hardCurve, currentDate, nextDate)
+        NkCurve softCurve = getAllocationCurve(sql, project, resource, "pralloccurve")
+        NkCurve hardCurve = getAllocationCurve(sql, project, resource, "hard_curve")
 
-            // Add the current period's data to the list
-            allocationData.add([
-                    project: project,
-                    resource: resource,
-                    segmentStart: currentDate.format('dd.MMM.yyyy'),
-                    segmentEnd: nextDate.format('dd.MMM.yyyy'),
-                    hardAllocation: hardAllocation,
-                    softAllocation: softAllocation
-            ])
+        // Print the contents of the fetched curves
+        println "Printing Soft Allocation Curve for ${resource}:"
+        printNkCurveContents(softCurve)
 
-            // Move to the next period
-            currentDate = nextDate
+        println "Printing Hard Allocation Curve for ${resource}:"
+        printNkCurveContents(hardCurve)
+
+        // Handle missing soft curve
+        if (softCurve == null) {
+            println "No soft allocation curve found for resource ${resource}, terminating job for this resource."
+            return
+        }
+
+        // Set hardCurve to null if not found
+        if (hardCurve == null) {
+            println "Hard allocation curve not found for resource ${resource}, setting hard allocation curve to null."
+            hardCurve = null  // Explicitly set hardCurve as null
+        }
+
+        // Split the duration into segments based on the period (daily, weekly, monthly)
+        use(TimeCategory) {
+            Date currentDate = fromDate
+            while (currentDate <= toDate) {
+                def nextDate = getNextPeriod(currentDate, period)
+
+                // Get the Soft and Hard Allocations for the current period
+                def softAllocation = getAllocationForPeriod(softCurve, currentDate, nextDate)
+
+                // If hardCurve is null, set hard allocation to 0.00 for the period
+                def hardAllocation = hardCurve ? getAllocationForPeriod(hardCurve, currentDate, nextDate) : 0.00
+
+                // Add the current period's data to the list
+                allocationData.add([
+                        project: project,
+                        resource: resource,
+                        segmentStart: currentDate.format('dd.MMM.yyyy'),
+                        segmentEnd: nextDate.format('dd.MMM.yyyy'),
+                        hardAllocation: hardAllocation,
+                        softAllocation: softAllocation
+                ])
+
+                // Move to the next period
+                currentDate = nextDate
+            }
         }
     }
 
     // Write the data to a CSV file
-    writeToCSV(allocationData, "resource_allocations_${project}_${resource}_${fromDate.format('yyyyMMdd')}_${toDate.format('yyyyMMdd')}.csv")
+    writeToCSV(allocationData, "resource_allocations_${project}_${fromDate.format('yyyyMMdd')}_${toDate.format('yyyyMMdd')}.csv")
+}
+
+
+// Helper method to create a default NkCurve (with 0.00 allocation)
+NkCurve createDefaultNkCurve() {
+    try {
+        // Create a dummy NkSegment with 0.00 allocation
+        // Avoid invoking complex constructors, just create a minimal dummy segment
+        NkSegment dummySegment = new NkSegment(null, null, 0.0, null)
+
+        // Return NkCurve with this dummy segment
+        def defaultCurve = new NkCurve([dummySegment])
+        return defaultCurve
+    } catch (Exception e) {
+        println "Error creating default NkCurve: ${e.message}"
+        return new NkCurve([])  // Return an empty curve if error occurs
+    }
 }
 
 // Method to get the next period end date based on the period type (daily, weekly, monthly)
@@ -210,44 +245,18 @@ Double getAllocationForPeriod(NkCurve curve, Date startDate, Date endDate) {
     return totalAllocation ?: 0.00  // Return 0.00 if no allocation is found or curve is null
 }
 
-// Helper method to create a default NkCurve (with valid data)
-NkCurve createDefaultNkCurve() {
-    try {
-        // Create NkTime objects (example)
-        NkTime startTime = new NkTime()
-        NkTime finishTime = new NkTime()
-
-        // Create NkCalendar object (example)
-        NkCalendar calendar = new NkCalendar()
-
-        // Create a valid NkSegment
-        def dummySegment = new NkSegment(startTime, finishTime, 0.00, calendar)
-
-        // Return NkCurve with this valid segment
-        def defaultCurve = new NkCurve([dummySegment])
-        return defaultCurve
-    } catch (Exception e) {
-        println "Error creating default NkCurve: ${e.message}"
-        return new NkCurve([])  // Return an empty curve if error occurs
-    }
-}
-
 // Fetch the project dates from the database
 def projectDates = getProjectDates(sql, project)
 if (projectDates) {
     Date fromDate = projectDates.fromDate
     Date toDate = projectDates.toDate
 
-    // Run the allocation migration job with the fetched dates
-    processAllocations(sql, project, resource, fromDate, toDate, period)
+    // Get all resources for the project
+    List<String> resources = getResourcesForProject(sql, project)
+
+    // Run the allocation migration job for all resources
+    processAllocations(sql, project, resources, fromDate, toDate, period)
 }
 
 // Close the database connection after use
 connection.close()
-
-
-
-
-
-
-
