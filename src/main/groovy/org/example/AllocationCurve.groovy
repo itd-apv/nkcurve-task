@@ -39,7 +39,6 @@ Map<String, Date> getProjectDates(Sql sql, String project) {
         return null
     }
 }
-
 // Helper method to extract byte data from the Blob
 NkCurve extractBlobData(Blob blob) {
     try {
@@ -118,31 +117,25 @@ def printNkCurveContents(NkCurve nkCurve) {
 void writeToCSV(List<Map<String, Object>> data, String filename) {
     File file = new File(filename)
     BufferedWriter writer = new BufferedWriter(new FileWriter(file))
-    writer.write("Project,Resource,Segment Start,Segment End,Hard Allocation (PD),Soft Allocation (PD)\n")
+    writer.write("Project Code,Project Name,Resource,Segment Start,Segment End,Hard Allocation (PD),Soft Allocation (PD)\n")
 
     data.each { entry ->
-        writer.write("${entry.project},${entry.resource},${entry.segmentStart},${entry.segmentEnd},${entry.hardAllocation},${entry.softAllocation}\n")
+        writer.write("${entry.project},${entry.projectName},${entry.resource},${entry.segmentStart},${entry.segmentEnd},${entry.hardAllocation},${entry.softAllocation}\n")
     }
 
     writer.close()
 }
 
-// Method to process allocations with hard curve set to null if not found
-void processAllocations(Sql sql, String project, List<String> resources, Date fromDate, Date toDate, String period) {
+
+/// Method to process allocations and write to CSV
+void processAllocations(Sql sql, String projectCode, List<String> resources, Date fromDate, Date toDate, String period, String projectName) {
     List<Map<String, Object>> allocationData = []
 
     resources.each { resource ->
         println "Processing allocations for resource: ${resource}"
 
-        NkCurve softCurve = getAllocationCurve(sql, project, resource, "pralloccurve")
-        NkCurve hardCurve = getAllocationCurve(sql, project, resource, "hard_curve")
-
-        // Print the contents of the fetched curves
-        println "Printing Soft Allocation Curve for ${resource}:"
-        printNkCurveContents(softCurve)
-
-        println "Printing Hard Allocation Curve for ${resource}:"
-        printNkCurveContents(hardCurve)
+        NkCurve softCurve = getAllocationCurve(sql, projectCode, resource, "pralloccurve")
+        NkCurve hardCurve = getAllocationCurve(sql, projectCode, resource, "hard_curve")
 
         // Handle missing soft curve
         if (softCurve == null) {
@@ -153,7 +146,7 @@ void processAllocations(Sql sql, String project, List<String> resources, Date fr
         // Set hardCurve to null if not found
         if (hardCurve == null) {
             println "Hard allocation curve not found for resource ${resource}, setting hard allocation curve to null."
-            hardCurve = null  // Explicitly set hardCurve as null
+            hardCurve = null
         }
 
         // Split the duration into segments based on the period (daily, weekly, monthly)
@@ -166,11 +159,12 @@ void processAllocations(Sql sql, String project, List<String> resources, Date fr
                 def softAllocation = getAllocationForPeriod(softCurve, currentDate, nextDate)
 
                 // If hardCurve is null, set hard allocation to 0.00 for the period
-                def hardAllocation = hardCurve ? getAllocationForPeriod(hardCurve, currentDate, nextDate) : 0.00
+                def hardAllocation = hardCurve ? getAllocationForPeriod(hardCurve, currentDate, nextDate) : 0.0
 
                 // Add the current period's data to the list
                 allocationData.add([
-                        project: project,
+                        project: projectCode,  // You can still keep the project code if needed
+                        projectName: projectName,  // Use project name here
                         resource: resource,
                         segmentStart: currentDate.format('dd.MMM.yyyy'),
                         segmentEnd: nextDate.format('dd.MMM.yyyy'),
@@ -185,9 +179,8 @@ void processAllocations(Sql sql, String project, List<String> resources, Date fr
     }
 
     // Write the data to a CSV file
-    writeToCSV(allocationData, "resource_allocations_${project}_${fromDate.format('yyyyMMdd')}_${toDate.format('yyyyMMdd')}.csv")
+    writeToCSV(allocationData, "resource_allocations_${projectCode}_${fromDate.format('yyyyMMdd')}_${toDate.format('yyyyMMdd')}.csv")
 }
-
 
 // Helper method to create a default NkCurve (with 0.00 allocation)
 NkCurve createDefaultNkCurve() {
@@ -204,7 +197,6 @@ NkCurve createDefaultNkCurve() {
         return new NkCurve([])  // Return an empty curve if error occurs
     }
 }
-
 // Method to get the next period end date based on the period type (daily, weekly, monthly)
 Date getNextPeriod(Date currentDate, String period) {
     switch (period.toLowerCase()) {
@@ -240,23 +232,60 @@ Double getAllocationForPeriod(NkCurve curve, Date startDate, Date endDate) {
     }
 
     // Log the total allocation for the period
-    println "Total Allocation for the period (${startDate.format('dd.MMM.yyyy')} - ${endDate.format('dd.MMM.yyyy')}): ${totalAllocation} hours"
+    println "Total Allocation for the period (${startDate.format('dd.MMM.yyyy')} - ${endDate.format('dd.MMM.yyyy')}): ${totalAllocation} FTE"
 
     return totalAllocation ?: 0.00  // Return 0.00 if no allocation is found or curve is null
 }
+// Method to fetch project name, fromDate, and toDate from the inv_investments table
+Map<String, Object> getProjectDetails(Sql sql, String projectCode) {
+    def query = """
+        SELECT code, name, schedule_start, schedule_finish
+        FROM inv_investments
+        WHERE code = ?  
+    """
+    def result = sql.firstRow(query, [projectCode])
 
-// Fetch the project dates from the database
-def projectDates = getProjectDates(sql, project)
-if (projectDates) {
-    Date fromDate = projectDates.fromDate
-    Date toDate = projectDates.toDate
+    if (result) {
+        String projectName = result.name
+        Date fromDate = result.schedule_start
+        Date toDate = result.schedule_finish
+        return [projectName: projectName, fromDate: fromDate, toDate: toDate]
+    } else {
+        println "No project found with code: ${projectCode}"
+        return null
+    }
+}
+// Fetch the project details from the database
+def projectDetails = getProjectDetails(sql, project)
+if (projectDetails) {
+    String projectName = projectDetails.projectName  // Get the project name
+    Date fromDate = projectDetails.fromDate
+    Date toDate = projectDetails.toDate
 
     // Get all resources for the project
     List<String> resources = getResourcesForProject(sql, project)
 
     // Run the allocation migration job for all resources
-    processAllocations(sql, project, resources, fromDate, toDate, period)
+    processAllocations(sql, project, resources, fromDate, toDate, period, projectName)
 }
+
+// Close the database connection after use
+connection.close()
+
+
+
+//// Fetch the project dates from the database
+//def projectDates = getProjectDates(sql, project)
+//if (projectDates) {
+//    Date fromDate = projectDates.fromDate
+//    Date toDate = projectDates.toDate
+//
+//    // Get all resources for the project
+//    List<String> resources = getResourcesForProject(sql, project)
+//
+//    // Run the allocation migration job for all resources
+//    processAllocations(sql, project, resources, fromDate, toDate, period)
+//}
 
 // Close the database connection after use
 connection.close()
