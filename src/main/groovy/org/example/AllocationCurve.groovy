@@ -1,3 +1,4 @@
+
 import com.niku.xmlserver.blob.NkCurve
 import com.niku.xmlserver.blob.NkSegment
 import com.niku.xmlserver.core.NkTime
@@ -21,24 +22,6 @@ def sql = new Sql(connection)
 def project = "PR1016"
 def period = "monthly" // Options: "daily", "weekly", "monthly, "quarterly"
 
-// Method to fetch fromDate and toDate from the inv_investments table
-Map<String, Date> getProjectDates(Sql sql, String project) {
-    def query = """
-        SELECT schedule_start, schedule_finish
-        FROM inv_investments
-        WHERE code = ?
-    """
-    def result = sql.firstRow(query, [project])
-
-    if (result) {
-        Date fromDate = result.schedule_start
-        Date toDate = result.schedule_finish
-        return [fromDate: fromDate, toDate: toDate]
-    } else {
-        println "No dates found for project: ${project}"
-        return null
-    }
-}
 // Helper method to extract byte data from the Blob
 NkCurve extractBlobData(Blob blob) {
     try {
@@ -96,23 +79,6 @@ List<String> getResourcesForProject(Sql sql, String project) {
     return result.collect { it.unique_name }
 }
 
-// Helper method to print the contents of the NkCurve
-def printNkCurveContents(NkCurve nkCurve) {
-    if (nkCurve != null && nkCurve.segments != null) {
-        println "NkCurve contains ${nkCurve.segments.size()} segments:"
-
-        nkCurve.segments.eachWithIndex { NkSegment segment, int index ->
-            println "Segment ${index + 1}:"
-            println "  Start Date: ${segment.startDate}"
-            println "  Finish Date: ${segment.finishDate}"
-            println "  Allocation Rate: ${segment.rate}"
-            println "  Calendar: ${segment.calendar}"  // Assuming the calendar can be printed like this
-        }
-    } else {
-        println "NkCurve is empty or null."
-    }
-}
-
 // Method to write the allocation data to a CSV file
 void writeToCSV(List<Map<String, Object>> data, String filename) {
     File file = new File(filename)
@@ -125,7 +91,6 @@ void writeToCSV(List<Map<String, Object>> data, String filename) {
 
     writer.close()
 }
-
 
 /// Method to process allocations and write to CSV
 void processAllocations(Sql sql, String projectCode, List<String> resources, Date fromDate, Date toDate, String period, String projectName) {
@@ -268,24 +233,6 @@ if (projectDetails) {
     // Run the allocation migration job for all resources
     processAllocations(sql, project, resources, fromDate, toDate, period, projectName)
 }
-
-// Close the database connection after use
-connection.close()
-
-
-
-//// Fetch the project dates from the database
-//def projectDates = getProjectDates(sql, project)
-//if (projectDates) {
-//    Date fromDate = projectDates.fromDate
-//    Date toDate = projectDates.toDate
-//
-//    // Get all resources for the project
-//    List<String> resources = getResourcesForProject(sql, project)
-//
-//    // Run the allocation migration job for all resources
-//    processAllocations(sql, project, resources, fromDate, toDate, period)
-//}
 
 // Close the database connection after use
 connection.close()
