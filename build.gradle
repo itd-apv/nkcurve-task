@@ -1,0 +1,50 @@
+plugins {
+    id 'groovy'
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)  // Set to the JDK version you want to use
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.release = 17  // Ensure compatibility with Java 17
+}
+
+tasks.withType(GroovyCompile) {
+    groovyOptions.encoding = 'UTF-8'
+}
+
+dependencies {
+    implementation fileTree(dir: 'lib', include: '*.jar')
+    implementation 'org.apache.groovy:groovy:4.0.14'
+    implementation 'org.apache.groovy:groovy-sql:4.0.14'
+    implementation 'com.opencsv:opencsv:5.7.1'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'com.oracle.database.jdbc:ojdbc8:19.8.0.0'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    testImplementation 'org.mockito:mockito-core:3.9.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.9.0'
+    testImplementation 'org.mockito:mockito-inline:3.9.0'
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.0.0' // Use the latest version
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0' // Use the latest compatible version
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.apache.groovy:groovy-all:4.0.14'
+}
+
+test {
+    useJUnitPlatform()
+}
