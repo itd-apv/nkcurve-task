@@ -16,7 +16,7 @@ import java.sql.DriverManager
 import java.text.SimpleDateFormat
 
 // Database connection details
-def url = "jdbc:oracle:thin:@//10.0.0.98:11521/clarity" // Replace with your DB details
+def url = "jdbc:oracle:thin:@//10.0.0.98:11521/clarity"
 def user = "niku"
 def password = "niku"
 
@@ -27,20 +27,19 @@ sql = new Sql(connection)
 @Field CommonLogger cmnLog = new CommonLogger(this)
 cmnLog.setFailJobOnError(true)
 
-PROJECT = "5001082"
-RESOURCE = "5004048"
-//FROM_DATE = "2024-12-01"
-//TO_DATE = "2025-12-01"
+PROJECT = null
+RESOURCE = null
+FROM_DATE = null
+TO_DATE = null
+PERIOD = null
 
 // Set FROM_DATE and TO_DATE to the specified range
-def fromDateString = "2024-01-01 00:00:00"  // January 1st, 2024
-def toDateString = "2024-12-31 00:00:00"  // December 31st, 2024
-
-// Convert the string dates to Date objects
-fromDate = Date.parse("yyyy-MM-dd HH:mm:ss", fromDateString)
-toDate = Date.parse("yyyy-MM-dd HH:mm:ss", toDateString)
-PERIOD = "MONTHLY" // Set period to "WEEKLY"
-
+//def fromDateString = null  // January 1st, 2024
+//def toDateString = "2024-12-31 00:00:00"  // December 31st, 2024
+//
+//// Convert the string dates to Date objects
+//fromDate = Date.parse("yyyy-MM-dd HH:mm:ss", fromDateString)
+//toDate = Date.parse("yyyy-MM-dd HH:mm:ss", toDateString)
 
 GroovyRowResult getProject(String projectId) {
     def query = """
@@ -343,7 +342,7 @@ def generateCsvForAllocations(String projectId, String resourceId, Date fromDate
 }
 
 void assertParameters() {
-    generateCsvForAllocations(PROJECT as String, RESOURCE as String, fromDate, toDate, PERIOD as String)
+    generateCsvForAllocations(PROJECT as String, RESOURCE as String, FROM_DATE, TO_DATE, PERIOD as String)
 }
 
 def runScript() {

@@ -1,13 +1,5 @@
 Project,Resource,Segment Start,Segment End,Hard Allocation (PD),Soft Allocation (PD)
-eCommerce Portal,5004048,01.Jan.2024,31.Jan.2024,0.0,0
-eCommerce Portal,5004048,01.Feb.2024,29.Feb.2024,0.0,0
-eCommerce Portal,5004048,01.Mar.2024,31.Mar.2024,0.0,0
-eCommerce Portal,5004048,01.Apr.2024,30.Apr.2024,0.0,0
-eCommerce Portal,5004048,01.May.2024,31.May.2024,0.0,0
-eCommerce Portal,5004048,01.Jun.2024,30.Jun.2024,0.0,0
-eCommerce Portal,5004048,01.Jul.2024,31.Jul.2024,0.0,0
-eCommerce Portal,5004048,01.Aug.2024,31.Aug.2024,0.0,0
-eCommerce Portal,5004048,01.Sep.2024,30.Sep.2024,0.0,0
-eCommerce Portal,5004048,01.Oct.2024,31.Oct.2024,5.0,0
-eCommerce Portal,5004048,01.Nov.2024,30.Nov.2024,7.0,0
-eCommerce Portal,5004048,01.Dec.2024,31.Dec.2024,0.0,0
+eCommerce Portal,5004048,01.Jan.2024,31.Mar.2024,0.0,0
+eCommerce Portal,5004048,01.Apr.2024,30.Jun.2024,0.0,0
+eCommerce Portal,5004048,01.Jul.2024,30.Sep.2024,0.0,0
+eCommerce Portal,5004048,01.Oct.2024,31.Dec.2024,14.35,0
