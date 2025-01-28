@@ -31,6 +31,7 @@ PROJECT = "5001082"
 RESOURCE = "5004048"
 //FROM_DATE = "2024-12-01"
 //TO_DATE = "2025-12-01"
+
 // Set FROM_DATE and TO_DATE to the specified range
 def fromDateString = "2024-01-01 00:00:00"  // January 1st, 2024
 def toDateString = "2024-12-31 00:00:00"  // December 31st, 2024
@@ -178,9 +179,11 @@ Integer getNumberOfPeriods(Date startDate, Date endDate, String period) {
             periods = Math.ceil(totalMonthsDiff / 3.0) as Integer
             break
         case "YEARLY":
-            periods = yearsDiff + (monthsDiff > 0 ? 1 : 0)
+            // For YEARLY periods, calculate the number of complete years and adjust for partial years if necessary
+            periods = yearsDiff + (monthsDiff > 0 ? 1 : 0) // 1 year if there is any extra month
             break
         case "WEEKLY":
+            // For WEEKLY periods, calculate the difference in weeks
             long diffInMillis = endDate.time - startDate.time
             long diffInWeeks = diffInMillis / (1000 * 60 * 60 * 24 * 7) // Convert milliseconds to weeks
             periods = diffInWeeks.toInteger() // Rounds to the nearest whole number of weeks
@@ -192,6 +195,7 @@ Integer getNumberOfPeriods(Date startDate, Date endDate, String period) {
     println "Total periods: $periods"
     return periods
 }
+
 
 def getPersonDays(NkCurve curve, Date fromDate, Date toDate) {
     def days = 0
