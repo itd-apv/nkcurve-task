@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NikuDataBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/nikuxog_contentPack.xsd">
+    <Header action="write" externalSource="NIKU" objectType="contentPack" version="16.2.3.1153"/>
+    <contentPack update="true">
+        <lookups update="true">
+            <staticLookup autoSuggestEnabled="true" autoSuggestMaxSuggestions="10" code="Z_ALLOC_PERIOD" hiddenAttributeName="lookup_code"
+                          sortStyle="alphanumeric" source="niku.com" status="active" update="true">
+                <nls description="look up for Allocations" languageCode="ca" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="cs" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="da" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="de" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="en" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="es" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="fi" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="fr" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="hu" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="it" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="ja" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="ko" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="nl" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="no" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="pl" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="pt" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="ru" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="sv" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="tr" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="zh" name="Period Type"/>
+                <nls description="look up for Allocations" languageCode="zh_TW" name="Period Type"/>
+                <lookupValue code="z_monthly" enum="0" partitionCode="partition1" partitionModeCode="PARTITION_AND_ANSTRS_DESDNTS" sortOrder="0" status="active">
+                    <nls description="" languageCode="ca" name="Monthly"/>
+                    <nls description="" languageCode="cs" name="Monthly"/>
+                    <nls description="" languageCode="da" name="Monthly"/>
+                    <nls description="" languageCode="de" name="Monthly"/>
+                    <nls description="" languageCode="en" name="Monthly"/>
+                    <nls description="" languageCode="es" name="Monthly"/>
+                    <nls description="" languageCode="fi" name="Monthly"/>
+                    <nls description="" languageCode="fr" name="Monthly"/>
+                    <nls description="" languageCode="hu" name="Monthly"/>
+                    <nls description="" languageCode="it" name="Monthly"/>
+                    <nls description="" languageCode="ja" name="Monthly"/>
+                    <nls description="" languageCode="ko" name="Monthly"/>
+                    <nls description="" languageCode="nl" name="Monthly"/>
+                    <nls description="" languageCode="no" name="Monthly"/>
+                    <nls description="" languageCode="pl" name="Monthly"/>
+                    <nls description="" languageCode="pt" name="Monthly"/>
+                    <nls description="" languageCode="ru" name="Monthly"/>
+                    <nls description="" languageCode="sv" name="Monthly"/>
+                    <nls description="" languageCode="tr" name="Monthly"/>
+                    <nls description="" languageCode="zh" name="Monthly"/>
+                    <nls description="" languageCode="zh_TW" name="Monthly"/>
+                </lookupValue>
+                <lookupValue code="z_quarterly" enum="0" partitionCode="partition1" partitionModeCode="PARTITION_AND_ANSTRS_DESDNTS" sortOrder="0" status="active">
+                    <nls description="" languageCode="ca" name="Quarterly"/>
+                    <nls description="" languageCode="cs" name="Quarterly"/>
+                    <nls description="" languageCode="da" name="Quarterly"/>
+                    <nls description="" languageCode="de" name="Quarterly"/>
+                    <nls description="" languageCode="en" name="Quarterly"/>
+                    <nls description="" languageCode="es" name="Quarterly"/>
+                    <nls description="" languageCode="fi" name="Quarterly"/>
+                    <nls description="" languageCode="fr" name="Quarterly"/>
+                    <nls description="" languageCode="hu" name="Quarterly"/>
+                    <nls description="" languageCode="it" name="Quarterly"/>
+                    <nls description="" languageCode="ja" name="Quarterly"/>
+                    <nls description="" languageCode="ko" name="Quarterly"/>
+                    <nls description="" languageCode="nl" name="Quarterly"/>
+                    <nls description="" languageCode="no" name="Quarterly"/>
+                    <nls description="" languageCode="pl" name="Quarterly"/>
+                    <nls description="" languageCode="pt" name="Quarterly"/>
+                    <nls description="" languageCode="ru" name="Quarterly"/>
+                    <nls description="" languageCode="sv" name="Quarterly"/>
+                    <nls description="" languageCode="tr" name="Quarterly"/>
+                    <nls description="" languageCode="zh" name="Quarterly"/>
+                    <nls description="" languageCode="zh_TW" name="Quarterly"/>
+                </lookupValue>
+                <lookupValue code="z_weekly" enum="0" partitionCode="partition1" partitionModeCode="PARTITION_AND_ANSTRS_DESDNTS" sortOrder="0" status="active">
+                    <nls description="" languageCode="ca" name="Weekly"/>
+                    <nls description="" languageCode="cs" name="Weekly"/>
+                    <nls description="" languageCode="da" name="Weekly"/>
+                    <nls description="" languageCode="de" name="Weekly"/>
+                    <nls description="" languageCode="en" name="Weekly"/>
+                    <nls description="" languageCode="es" name="Weekly"/>
+                    <nls description="" languageCode="fi" name="Weekly"/>
+                    <nls description="" languageCode="fr" name="Weekly"/>
+                    <nls description="" languageCode="hu" name="Weekly"/>
+                    <nls description="" languageCode="it" name="Weekly"/>
+                    <nls description="" languageCode="ja" name="Weekly"/>
+                    <nls description="" languageCode="ko" name="Weekly"/>
+                    <nls description="" languageCode="nl" name="Weekly"/>
+                    <nls description="" languageCode="no" name="Weekly"/>
+                    <nls description="" languageCode="pl" name="Weekly"/>
+                    <nls description="" languageCode="pt" name="Weekly"/>
+                    <nls description="" languageCode="ru" name="Weekly"/>
+                    <nls description="" languageCode="sv" name="Weekly"/>
+                    <nls description="" languageCode="tr" name="Weekly"/>
+                    <nls description="" languageCode="zh" name="Weekly"/>
+                    <nls description="" languageCode="zh_TW" name="Weekly"/>
+                </lookupValue>
+                <lookupValue code="z_yearly" enum="0" partitionCode="partition1" partitionModeCode="PARTITION_AND_ANSTRS_DESDNTS" sortOrder="0" status="active">
+                    <nls description="" languageCode="ca" name="Yearly"/>
+                    <nls description="" languageCode="cs" name="Yearly"/>
+                    <nls description="" languageCode="da" name="Yearly"/>
+                    <nls description="" languageCode="de" name="Yearly"/>
+                    <nls description="" languageCode="en" name="Yearly"/>
+                    <nls description="" languageCode="es" name="Yearly"/>
+                    <nls description="" languageCode="fi" name="Yearly"/>
+                    <nls description="" languageCode="fr" name="Yearly"/>
+                    <nls description="" languageCode="hu" name="Yearly"/>
+                    <nls description="" languageCode="it" name="Yearly"/>
+                    <nls description="" languageCode="ja" name="Yearly"/>
+                    <nls description="" languageCode="ko" name="Yearly"/>
+                    <nls description="" languageCode="nl" name="Yearly"/>
+                    <nls description="" languageCode="no" name="Yearly"/>
+                    <nls description="" languageCode="pl" name="Yearly"/>
+                    <nls description="" languageCode="pt" name="Yearly"/>
+                    <nls description="" languageCode="ru" name="Yearly"/>
+                    <nls description="" languageCode="sv" name="Yearly"/>
+                    <nls description="" languageCode="tr" name="Yearly"/>
+                    <nls description="" languageCode="zh" name="Yearly"/>
+                    <nls description="" languageCode="zh_TW" name="Yearly"/>
+                </lookupValue>
+                <displayedSuggestionAttributes>
+                    <displayedSuggestionAttribute value="name"/>
+                </displayedSuggestionAttributes>
+                <searchedSuggestionAttributes>
+                    <searchedSuggestionAttribute value="name"/>
+                </searchedSuggestionAttributes>
+            </staticLookup>
+        </lookups>
+        <partitionModels>
+            <partitionModel code="partitionModel1" isActive="true">
+                <nls description="Organització" languageCode="ca" name="Organització"/>
+                <nls description="Organizace" languageCode="cs" name="Organizace"/>
+                <nls description="Organisation" languageCode="da" name="Organisation"/>
+                <nls description="Organisation" languageCode="de" name="Organisation"/>
+                <nls description="Organization" languageCode="en" name="Organization"/>
+                <nls description="Organización" languageCode="es" name="Organización"/>
+                <nls description="Organisaatio" languageCode="fi" name="Organisaatio"/>
+                <nls description="Organisation" languageCode="fr" name="Organisation"/>
+                <nls description="Szervezet" languageCode="hu" name="Szervezet"/>
+                <nls description="Organizzazione" languageCode="it" name="Organizzazione"/>
+                <nls description="組織" languageCode="ja" name="組織"/>
+                <nls description="조직" languageCode="ko" name="조직"/>
+                <nls description="Organisatie" languageCode="nl" name="Organisatie"/>
+                <nls description="Organisasjon" languageCode="no" name="Organisasjon"/>
+                <nls description="Organizacja" languageCode="pl" name="Organizacja"/>
+                <nls description="Organização" languageCode="pt" name="Organização"/>
+                <nls description="Организация" languageCode="ru" name="Организация"/>
+                <nls description="Organisation" languageCode="sv" name="Organisation"/>
+                <nls description="Organizasyon" languageCode="tr" name="Organizasyon"/>
+                <nls description="组织" languageCode="zh" name="组织"/>
+                <nls description="組織" languageCode="zh_TW" name="組織"/>
+                <partition code="partition1" isActive="true" uiThemeCode="default">
+                    <nls description="Totes les organitzacions" languageCode="ca" name="Totes les organitzacions"/>
+                    <nls description="Všechny organizace" languageCode="cs" name="Všechny organizace"/>
+                    <nls description="Alle organisationer" languageCode="da" name="Alle organisationer"/>
+                    <nls description="Alle Organisationen" languageCode="de" name="Alle Organisationen"/>
+                    <nls description="All Organizations" languageCode="en" name="All Organizations"/>
+                    <nls description="Todas las organizaciones" languageCode="es" name="Todas las organizaciones"/>
+                    <nls description="Kaikki organisaatiot" languageCode="fi" name="Kaikki organisaatiot"/>
+                    <nls description="Toutes les organisations" languageCode="fr" name="Toutes les organisations"/>
+                    <nls description="Minden szervezet" languageCode="hu" name="Minden szervezet"/>
+                    <nls description="Tutte le organizzazioni" languageCode="it" name="Tutte le organizzazioni"/>
+                    <nls description="全組織" languageCode="ja" name="全組織"/>
+                    <nls description="모든 조직" languageCode="ko" name="모든 조직"/>
+                    <nls description="Alle organisaties" languageCode="nl" name="Alle organisaties"/>
+                    <nls description="Alle organisasjoner" languageCode="no" name="Alle organisasjoner"/>
+                    <nls description="Wszystkie organizacje" languageCode="pl" name="Wszystkie organizacje"/>
+                    <nls description="Todas as organizações" languageCode="pt" name="Todas as organizações"/>
+                    <nls description="Все организации" languageCode="ru" name="Все организации"/>
+                    <nls description="Alla organisationer" languageCode="sv" name="Alla organisationer"/>
+                    <nls description="Tüm Organizasyonlar" languageCode="tr" name="Tüm Organizasyonlar"/>
+                    <nls description="所有组织" languageCode="zh" name="所有组织"/>
+                    <nls description="所有組織" languageCode="zh_TW" name="所有組織"/>
+                    <partitionMembers>
+                        <groupMember groupCode="cop.partitionIT"/>
+                    </partitionMembers>
+                    <partition code="partition10" isActive="true" uiThemeCode="default">
+                        <nls description="Tecnologia de la informació" languageCode="ca" name="Tecnologies de la informació (TI)"/>
+                        <nls description="Informační technologie" languageCode="cs" name="IT"/>
+                        <nls description="Informationsteknologi" languageCode="da" name="IT"/>
+                        <nls description="Informationstechnologie" languageCode="de" name="IT"/>
+                        <nls description="Information Technology" languageCode="en" name="IT"/>
+                        <nls description="Tecnología de la información" languageCode="es" name="Tecnologías de la información (TI)"/>
+                        <nls description="Tietotekniikka" languageCode="fi" name="IT"/>
+                        <nls description="Technologies de l'information" languageCode="fr" name="Informatique"/>
+                        <nls description="Információtechnológia" languageCode="hu" name="IT"/>
+                        <nls description="IT" languageCode="it" name="IT"/>
+                        <nls description="情報技術" languageCode="ja" name="IT"/>
+                        <nls description="IT" languageCode="ko" name="IT"/>
+                        <nls description="Informatietechnologie" languageCode="nl" name="IT"/>
+                        <nls description="Informasjonsteknologi" languageCode="no" name="IT"/>
+                        <nls description="Technologie informatyczne" languageCode="pl" name="IT"/>
+                        <nls description="Tecnologia da informação" languageCode="pt" name="TI"/>
+                        <nls description="Информационные технологии" languageCode="ru" name="ИТ"/>
+                        <nls description="Informationsteknik" languageCode="sv" name="IT"/>
+                        <nls description="Bilgi Teknolojisi" languageCode="tr" name="BT"/>
+                        <nls description="信息技术" languageCode="zh" name="IT"/>
+                        <nls description="資訊科技" languageCode="zh_TW" name="IT"/>
+                        <partitionMembers>
+                            <groupMember groupCode="cop.partitionIT"/>
+                        </partitionMembers>
+                    </partition>
+                </partition>
+            </partitionModel>
+        </partitionModels>
+    </contentPack>
+</NikuDataBus>
