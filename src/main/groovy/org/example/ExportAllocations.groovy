@@ -6,7 +6,7 @@ import de.itdesign.clarity.logging.CommonLogger
 import groovy.sql.Sql
 import groovy.time.TimeCategory
 import groovy.transform.Field
-
+import java.math.RoundingMode
 import java.sql.DriverManager
 import java.sql.Connection
 import java.sql.Blob
@@ -21,10 +21,10 @@ def password = "niku"
 Connection connection = DriverManager.getConnection(url, user, password)
 def sql = new Sql(connection)
 
-project = 5001123
-resource = 5004037
+project = 5001099
+resource = 5004062
 period = "monthly"
-fromDate = Date.parse("yyyy-MM-dd", "2024-11-01")
+fromDate = Date.parse("yyyy-MM-dd", "2024-01-01")
 toDate = Date.parse("yyyy-MM-dd", "2025-01-01")
 
 
@@ -150,68 +150,89 @@ Date adjustDateForPeriod(Date currentDate, String period) {
         case "quarterly":
             calendar.add(Calendar.MONTH, 3)
             break
+        case "yearly":
+            calendar.add(Calendar.YEAR, 1)
+            break
         default:
             throw new IllegalArgumentException("Unknown period type: ${period}")
     }
 
     return calendar.time
 }
-// Method to count working days (excluding weekends)
 def countWorkingDays(Date start, Date end) {
     int workingDays = 0
     Calendar calendar = Calendar.getInstance()
     calendar.setTime(start)
 
+    // If the start date is on a Saturday or Sunday, adjust it to the next Monday
     if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
         calendar.add(Calendar.DAY_OF_MONTH, 2)
     } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
         calendar.add(Calendar.DAY_OF_MONTH, 1)
     }
 
+    // Now that the start date is adjusted, loop through all days up to the end date
     while (!calendar.getTime().after(end)) {
+        // Only count weekdays (Monday to Friday)
         if (calendar.get(Calendar.DAY_OF_WEEK) >= Calendar.MONDAY && calendar.get(Calendar.DAY_OF_WEEK) <= Calendar.FRIDAY) {
             workingDays++
         }
         calendar.add(Calendar.DAY_OF_MONTH, 1)
     }
+
     return workingDays
 }
 
-// Helper method to get the working days for a given period (based on NkCurve segments)
 def getWorkingDaysForCurvePeriod(NkCurve curve, Date startDate, Date endDate) {
-    def totalWorkingDays = 0
+    def totalWorkingDays = 0.0  // Accumulate working days as a float
 
     println "Calculating working days for the period: ${startDate.format('dd.MMM.yyyy')} to ${endDate.format('dd.MMM.yyyy')}"
 
     curve?.segments?.each { NkSegment segment ->
-        // Print segment details
-        println "Processing segment: Start Date = ${segment.startDate.format('dd.MMM.yyyy')}, End Date = ${segment.finishDate.format('dd.MMM.yyyy')}, Rate = ${segment.rate}"
+        // No rounding, directly use the rate from the segment
+        def rate = segment.getRate()
+        println "Processing segment: Start Date = ${segment.startDate.format('dd.MMM.yyyy')}, End Date = ${segment.finishDate.format('dd.MMM.yyyy')}, Rate = ${rate}"
 
-        // Skip zero-rate segments
-        if (segment.rate == 0.0) {
+        if (rate == 0.0) {
             println "Skipping segment with zero rate"
             return
         }
 
-        // Determine the start and finish dates for this segment
         Date segmentStart = segment.startDate
         Date segmentEnd = segment.finishDate
 
-        // Calculate overlap between the curve segment and the specified period (startDate to endDate)
+        // Calculate the overlap between the curve segment and the requested period
         def overlapStart = startDate.after(segmentStart) ? startDate : segmentStart
         def overlapEnd = endDate.before(segmentEnd) ? endDate : segmentEnd
 
-        // If the overlap period is valid, calculate the working days
+        // Only count if the overlap is valid
         if (!overlapStart.after(overlapEnd)) {
+            // Calculate working days for the period
             int workingDaysForPeriod = countWorkingDays(overlapStart, overlapEnd)
-            totalWorkingDays += workingDaysForPeriod
-            println "Working days for this segment: ${workingDaysForPeriod}"
+
+            println "Overlapping Segment: Start = ${overlapStart.format('dd.MMM.yyyy')}, End = ${overlapEnd.format('dd.MMM.yyyy')}"
+            println "Working days for this segment: ${workingDaysForPeriod} (rate applied: ${rate})"
+
+            // Subtract 1 from the working days
+            def adjustedWorkingDays = workingDaysForPeriod - 1
+            if (adjustedWorkingDays < 0) adjustedWorkingDays = 0 // Ensure no negative working days
+
+            // Multiply the adjusted working days by the rate
+            def adjustedValue = adjustedWorkingDays * rate
+            totalWorkingDays += adjustedValue
+
+            println "Adjusted working days (after subtraction and rate applied): ${adjustedWorkingDays}, Value after rate applied: ${adjustedValue}"
         }
     }
 
-    println "Total working days for the period: ${totalWorkingDays}"
-    return totalWorkingDays
+    // Round the total working days to 2 decimal places only once at the end
+    def roundedTotalWorkingDays = new BigDecimal(totalWorkingDays).setScale(2, RoundingMode.HALF_UP)
+    println "Total working days for the period: ${roundedTotalWorkingDays}"
+
+    return roundedTotalWorkingDays
 }
+
+
 
 // Main method to process and calculate working days in each period
 def projectDetails = sql.firstRow("""
