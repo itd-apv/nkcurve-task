@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NikuDataBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/nikuxog_contentPack.xsd">
+    <Header action="write" externalSource="NIKU" objectType="contentPack" version="16.2.3.1153"/>
+    <contentPack update="true">
+        <jobDefinitions update="true">
+            <jobDefinition active="1" cancellable="false" executable="de.itdesign.clarity.scripting.ItdScriptJob" isHidden="false"
+                           jobDefinitionCode="z_test_1" jobType="JAVA" logEnabled="1" outputEnabled="1" runConcurrent="false" source="customer">
+                <nls description="test" languageCode="ca" name="test"/>
+                <nls description="test" languageCode="cs" name="test"/>
+                <nls description="test" languageCode="da" name="test"/>
+                <nls description="test" languageCode="de" name="test"/>
+                <nls description="test" languageCode="en" name="Export Allocation"/>
+                <nls description="test" languageCode="es" name="test"/>
+                <nls description="test" languageCode="fi" name="test"/>
+                <nls description="test" languageCode="fr" name="test"/>
+                <nls description="test" languageCode="hu" name="test"/>
+                <nls description="test" languageCode="it" name="test"/>
+                <nls description="test" languageCode="ja" name="test"/>
+                <nls description="test" languageCode="ko" name="test"/>
+                <nls description="test" languageCode="nl" name="test"/>
+                <nls description="test" languageCode="no" name="test"/>
+                <nls description="test" languageCode="pl" name="test"/>
+                <nls description="test" languageCode="pt" name="test"/>
+                <nls description="test" languageCode="ru" name="test"/>
+                <nls description="test" languageCode="sv" name="test"/>
+                <nls description="test" languageCode="tr" name="test"/>
+                <nls description="test" languageCode="zh" name="test"/>
+                <nls description="test" languageCode="zh_TW" name="test"/>
+                <parameter code="scriptLang" dataType="string" defaultValue="groovy" order="1" readOnly="false" required="true" widgetType="text">
+                    <nls languageCode="ca" name="Language"/>
+                    <nls languageCode="cs" name="Language"/>
+                    <nls languageCode="da" name="Language"/>
+                    <nls languageCode="de" name="Language"/>
+                    <nls description="Language" languageCode="en" name="Language"/>
+                    <nls languageCode="es" name="Language"/>
+                    <nls languageCode="fi" name="Language"/>
+                    <nls languageCode="fr" name="Language"/>
+                    <nls languageCode="hu" name="Language"/>
+                    <nls languageCode="it" name="Language"/>
+                    <nls languageCode="ja" name="Language"/>
+                    <nls languageCode="ko" name="Language"/>
+                    <nls languageCode="nl" name="Language"/>
+                    <nls languageCode="no" name="Language"/>
+                    <nls languageCode="pl" name="Language"/>
+                    <nls languageCode="pt" name="Language"/>
+                    <nls languageCode="ru" name="Language"/>
+                    <nls languageCode="sv" name="Language"/>
+                    <nls languageCode="tr" name="Language"/>
+                    <nls languageCode="zh" name="Language"/>
+                    <nls languageCode="zh_TW" name="Language"/>
+                </parameter>
+                <parameter code="scriptcode" dataType="string" defaultValue="ExportAllocations.groovy" order="2" readOnly="false" required="true" widgetType="text">
+                    <nls languageCode="ca" name="Script Code"/>
+                    <nls languageCode="cs" name="Script Code"/>
+                    <nls languageCode="da" name="Script Code"/>
+                    <nls languageCode="de" name="Script Code"/>
+                    <nls description="Script Code" languageCode="en" name="Script Code"/>
+                    <nls languageCode="es" name="Script Code"/>
+                    <nls languageCode="fi" name="Script Code"/>
+                    <nls languageCode="fr" name="Script Code"/>
+                    <nls languageCode="hu" name="Script Code"/>
+                    <nls languageCode="it" name="Script Code"/>
+                    <nls languageCode="ja" name="Script Code"/>
+                    <nls languageCode="ko" name="Script Code"/>
+                    <nls languageCode="nl" name="Script Code"/>
+                    <nls languageCode="no" name="Script Code"/>
+                    <nls languageCode="pl" name="Script Code"/>
+                    <nls languageCode="pt" name="Script Code"/>
+                    <nls languageCode="ru" name="Script Code"/>
+                    <nls languageCode="sv" name="Script Code"/>
+                    <nls languageCode="tr" name="Script Code"/>
+                    <nls languageCode="zh" name="Script Code"/>
+                    <nls languageCode="zh_TW" name="Script Code"/>
+                </parameter>
+                <parameter code="source" dataType="string" defaultValue="*auto*" order="3" readOnly="false" required="true" widgetType="text">
+                    <nls languageCode="ca" name="Script Source"/>
+                    <nls languageCode="cs" name="Script Source"/>
+                    <nls languageCode="da" name="Script Source"/>
+                    <nls languageCode="de" name="Script Source"/>
+                    <nls description="Script Source" languageCode="en" name="Script Source"/>
+                    <nls languageCode="es" name="Script Source"/>
+                    <nls languageCode="fi" name="Script Source"/>
+                    <nls languageCode="fr" name="Script Source"/>
+                    <nls languageCode="hu" name="Script Source"/>
+                    <nls languageCode="it" name="Script Source"/>
+                    <nls languageCode="ja" name="Script Source"/>
+                    <nls languageCode="ko" name="Script Source"/>
+                    <nls languageCode="nl" name="Script Source"/>
+                    <nls languageCode="no" name="Script Source"/>
+                    <nls languageCode="pl" name="Script Source"/>
+                    <nls languageCode="pt" name="Script Source"/>
+                    <nls languageCode="ru" name="Script Source"/>
+                    <nls languageCode="sv" name="Script Source"/>
+                    <nls languageCode="tr" name="Script Source"/>
+                    <nls languageCode="zh" name="Script Source"/>
+                    <nls languageCode="zh_TW" name="Script Source"/>
+                </parameter>
+                <parameter code="z_from_date" dataType="string" order="4" readOnly="false" required="true" widgetType="relativedate">
+                    <nls languageCode="ca" name="From Date"/>
+                    <nls languageCode="cs" name="From Date"/>
+                    <nls languageCode="da" name="From Date"/>
+                    <nls languageCode="de" name="From Date"/>
+                    <nls description="From Date" languageCode="en" name="From Date"/>
+                    <nls languageCode="es" name="From Date"/>
+                    <nls languageCode="fi" name="From Date"/>
+                    <nls languageCode="fr" name="From Date"/>
+                    <nls languageCode="hu" name="From Date"/>
+                    <nls languageCode="it" name="From Date"/>
+                    <nls languageCode="ja" name="From Date"/>
+                    <nls languageCode="ko" name="From Date"/>
+                    <nls languageCode="nl" name="From Date"/>
+                    <nls languageCode="no" name="From Date"/>
+                    <nls languageCode="pl" name="From Date"/>
+                    <nls languageCode="pt" name="From Date"/>
+                    <nls languageCode="ru" name="From Date"/>
+                    <nls languageCode="sv" name="From Date"/>
+                    <nls languageCode="tr" name="From Date"/>
+                    <nls languageCode="zh" name="From Date"/>
+                    <nls languageCode="zh_TW" name="From Date"/>
+                </parameter>
+                <parameter code="periodTypeWeekMonth" dataType="string" defaultValue="MONTH" lookupCardinality="1" lookupCode="CSK_RPT_PERIOD_TYPE_ALL"
+                           order="5" readOnly="false" required="true" widgetType="select">
+                    <nls languageCode="ca" name="Period Type"/>
+                    <nls languageCode="cs" name="Period Type"/>
+                    <nls languageCode="da" name="Period Type"/>
+                    <nls languageCode="de" name="Period Type"/>
+                    <nls description="Period Type" languageCode="en" name="Period Type"/>
+                    <nls languageCode="es" name="Period Type"/>
+                    <nls languageCode="fi" name="Period Type"/>
+                    <nls languageCode="fr" name="Period Type"/>
+                    <nls languageCode="hu" name="Period Type"/>
+                    <nls languageCode="it" name="Period Type"/>
+                    <nls languageCode="ja" name="Period Type"/>
+                    <nls languageCode="ko" name="Period Type"/>
+                    <nls languageCode="nl" name="Period Type"/>
+                    <nls languageCode="no" name="Period Type"/>
+                    <nls languageCode="pl" name="Period Type"/>
+                    <nls languageCode="pt" name="Period Type"/>
+                    <nls languageCode="ru" name="Period Type"/>
+                    <nls languageCode="sv" name="Period Type"/>
+                    <nls languageCode="tr" name="Period Type"/>
+                    <nls languageCode="zh" name="Period Type"/>
+                    <nls languageCode="zh_TW" name="Period Type"/>
+                </parameter>
+                <parameter code="z_resource" dataType="string" lookupCardinality="1" lookupCode="LOOKUP_RESOURCES_NAME_ONLY" order="6" readOnly="false"
+                           required="true" widgetType="select">
+                    <nls languageCode="ca" name="Resource"/>
+                    <nls languageCode="cs" name="Resource"/>
+                    <nls languageCode="da" name="Resource"/>
+                    <nls languageCode="de" name="Resource"/>
+                    <nls description="Resource" languageCode="en" name="Resource"/>
+                    <nls languageCode="es" name="Resource"/>
+                    <nls languageCode="fi" name="Resource"/>
+                    <nls languageCode="fr" name="Resource"/>
+                    <nls languageCode="hu" name="Resource"/>
+                    <nls languageCode="it" name="Resource"/>
+                    <nls languageCode="ja" name="Resource"/>
+                    <nls languageCode="ko" name="Resource"/>
+                    <nls languageCode="nl" name="Resource"/>
+                    <nls languageCode="no" name="Resource"/>
+                    <nls languageCode="pl" name="Resource"/>
+                    <nls languageCode="pt" name="Resource"/>
+                    <nls languageCode="ru" name="Resource"/>
+                    <nls languageCode="sv" name="Resource"/>
+                    <nls languageCode="tr" name="Resource"/>
+                    <nls languageCode="zh" name="Resource"/>
+                    <nls languageCode="zh_TW" name="Resource"/>
+                </parameter>
+                <parameter code="z_project" dataType="string" lookupCardinality="1" lookupCode="LOOKUP_INVESTMENT_QUICK_ADD" order="7" readOnly="false"
+                           required="true" widgetType="browse">
+                    <nls languageCode="ca" name="Project"/>
+                    <nls languageCode="cs" name="Project"/>
+                    <nls languageCode="da" name="Project"/>
+                    <nls languageCode="de" name="Project"/>
+                    <nls description="Project" languageCode="en" name="Project"/>
+                    <nls languageCode="es" name="Project"/>
+                    <nls languageCode="fi" name="Project"/>
+                    <nls languageCode="fr" name="Project"/>
+                    <nls languageCode="hu" name="Project"/>
+                    <nls languageCode="it" name="Project"/>
+                    <nls languageCode="ja" name="Project"/>
+                    <nls languageCode="ko" name="Project"/>
+                    <nls languageCode="nl" name="Project"/>
+                    <nls languageCode="no" name="Project"/>
+                    <nls languageCode="pl" name="Project"/>
+                    <nls languageCode="pt" name="Project"/>
+                    <nls languageCode="ru" name="Project"/>
+                    <nls languageCode="sv" name="Project"/>
+                    <nls languageCode="tr" name="Project"/>
+                    <nls languageCode="zh" name="Project"/>
+                    <nls languageCode="zh_TW" name="Project"/>
+                </parameter>
+                <parameter code="z_to_date" dataType="string" order="8" readOnly="false" required="true" widgetType="relativedate">
+                    <nls languageCode="ca" name="To Date"/>
+                    <nls languageCode="cs" name="To Date"/>
+                    <nls languageCode="da" name="To Date"/>
+                    <nls languageCode="de" name="To Date"/>
+                    <nls description="To Date" languageCode="en" name="To Date"/>
+                    <nls languageCode="es" name="To Date"/>
+                    <nls languageCode="fi" name="To Date"/>
+                    <nls languageCode="fr" name="To Date"/>
+                    <nls languageCode="hu" name="To Date"/>
+                    <nls languageCode="it" name="To Date"/>
+                    <nls languageCode="ja" name="To Date"/>
+                    <nls languageCode="ko" name="To Date"/>
+                    <nls languageCode="nl" name="To Date"/>
+                    <nls languageCode="no" name="To Date"/>
+                    <nls languageCode="pl" name="To Date"/>
+                    <nls languageCode="pt" name="To Date"/>
+                    <nls languageCode="ru" name="To Date"/>
+                    <nls languageCode="sv" name="To Date"/>
+                    <nls languageCode="tr" name="To Date"/>
+                    <nls languageCode="zh" name="To Date"/>
+                    <nls languageCode="zh_TW" name="To Date"/>
+                </parameter>
+                <OBSAssocs complete="false"/>
+                <Security>
+                    <UserSecurity rightCode="JobDefinitionCreatorAuto" userName="admin"/>
+                </Security>
+            </jobDefinition>
+        </jobDefinitions>
+        <lookups update="true">
+        <dynamicLookup autoSuggestEnabled="true" autoSuggestMaxSuggestions="10" code="LOOKUP_RESOURCES_NAME_ONLY" displayAttributeName="full_name"
+                       hiddenAttributeName="user_id" objectCode="" sortAttributeName="last_name" sortDirection="asc" source="niku.com" status="active" update="true">
+            <nls description="Llista de recursos actius i bloquejats" languageCode="ca" name="Recursos actius i bloquejats"/>
+            <nls description="Seznam aktivních a zamčených zdrojů" languageCode="cs" name="Aktivní a zamčené zdroje"/>
+            <nls description="Liste over aktive og låste ressourcer" languageCode="da" name="Aktive og låste ressourcer"/>
+            <nls description="Liste der aktiven und gesperrten Ressourcen" languageCode="de" name="Aktive und gesperrte Ressourcen"/>
+            <nls description="List of active and locked resources" languageCode="en" name="Active and locked resources"/>
+            <nls description="Lista de recursos activos y bloqueados" languageCode="es" name="Recursos activos y bloqueados"/>
+            <nls description="Aktiivisten ja lukittujen resurssien luettelo" languageCode="fi" name="Aktiiviset ja lukitut resurssit"/>
+            <nls description="Liste des ressources actives et verrouillées" languageCode="fr" name="Ressources actives et verrouillées"/>
+            <nls description="Aktív és lezárt erőforrások listája" languageCode="hu" name="Aktív és lezárt erőforrások"/>
+            <nls description="Elenco di risorse attive e bloccate" languageCode="it" name="Risorse attive e bloccate"/>
+            <nls description="アクティブおよびロックされたリソースのリスト" languageCode="ja" name="アクティブおよびロックされたリソース"/>
+            <nls description="활성 및 잠금 상태인 리소스 목록" languageCode="ko" name="활성 및 잠긴 리소스"/>
+            <nls description="Lijst van actieve en vergrendelde resources" languageCode="nl" name="Actieve en vergrendelde resources"/>
+            <nls description="Liste over aktive og låste ressurser" languageCode="no" name="Aktive og låste ressurser"/>
+            <nls description="Lista aktywnych i zablokowanych zasobów" languageCode="pl" name="Aktywne i zablokowane zasoby"/>
+            <nls description="Lista de recursos bloqueados e ativos" languageCode="pt" name="Recursos ativos e bloqueados"/>
+            <nls description="Список активных и блокированных ресурсов" languageCode="ru" name="Активные и заблокированные ресурсы"/>
+            <nls description="Lista över aktiva och låsta resurser" languageCode="sv" name="Aktiva och låsta resurser"/>
+            <nls description="Etkin ve kilitli kaynaklar listesi" languageCode="tr" name="Etkin ve kilitli kaynaklar"/>
+            <nls description="活动和锁定资源的列表" languageCode="zh" name="活动和锁定的资源"/>
+            <nls description="使用中和鎖定資源清單" languageCode="zh_TW" name="使用中且已鎖定的資源"/>
+            <nsql databaseId="Niku" dbVendor="all"><![CDATA[SELECT @SELECT:u.id:user_id@,
+    @SELECT:u.USER_NAME:UNIQUE_CODE@,
+    @SELECT:r.id:resource_id@,
+    @SELECT:r.unique_name:unique_name@,
+    @SELECT:r.first_name:first_name@,
+    @SELECT:r.last_name:last_name@,
+    @SELECT:r.full_name:full_name@,
+	  @SELECT:r.LAST_UPDATED_DATE:LAST_UPDATED_DATE@
+FROM  srm_resources r,
+      cmn_sec_users u,
+      cmn_lookups s
+WHERE  u.id = r.user_id
+AND   @FILTER@ @BROWSE-ONLY: AND @WHERE:SECURITY:RESOURCE:r.ID@:BROWSE-ONLY@
+AND   u.user_status_id = s.id
+AND   u.IS_HIDDEN = 0
+AND   r.IS_HIDDEN = 0
+AND   s.lookup_type = 'SEC_USER_STATUS'
+AND   s.lookup_code IN ('ACTIVE','LOCK')]]></nsql>
+            <displayedSuggestionAttributes>
+                <displayedSuggestionAttribute value="full_name"/>
+                <displayedSuggestionAttribute value="unique_name"/>
+            </displayedSuggestionAttributes>
+            <searchedSuggestionAttributes>
+                <searchedSuggestionAttribute value="full_name"/>
+                <searchedSuggestionAttribute value="unique_name"/>
+            </searchedSuggestionAttributes>
+            <browsePage>
+                <singleSelectPageTitles>
+                    <nls description="Seleccionar recurs" languageCode="ca" name="Seleccionar recurs"/>
+                    <nls description="Vybrat zdroj" languageCode="cs" name="Vybrat zdroj"/>
+                    <nls description="Vælg ressource" languageCode="da" name="Vælg ressource"/>
+                    <nls description="Ressource auswählen" languageCode="de" name="Ressource auswählen"/>
+                    <nls description="Select Resource" languageCode="en" name="Select Resource"/>
+                    <nls description="Seleccionar recurso" languageCode="es" name="Seleccionar recurso"/>
+                    <nls description="Valitse resurssi" languageCode="fi" name="Valitse resurssi"/>
+                    <nls description="Sélectionner une ressource" languageCode="fr" name="Sélectionner une ressource"/>
+                    <nls description="Erőforrás kiválasztása" languageCode="hu" name="Erőforrás kiválasztása"/>
+                    <nls description="Seleziona risorsa" languageCode="it" name="Seleziona risorsa"/>
+                    <nls description="リソースの選択" languageCode="ja" name="リソースの選択"/>
+                    <nls description="리소스 선택" languageCode="ko" name="리소스 선택"/>
+                    <nls description="Resource selecteren" languageCode="nl" name="Resource selecteren"/>
+                    <nls description="Velg ressurs" languageCode="no" name="Velg ressurs"/>
+                    <nls description="Wybierz zasób" languageCode="pl" name="Wybierz zasób"/>
+                    <nls description="Selecionar recurso" languageCode="pt" name="Selecionar recurso"/>
+                    <nls description="Выбор ресурса" languageCode="ru" name="Выбор ресурса"/>
+                    <nls description="Välj resurs" languageCode="sv" name="Välj resurs"/>
+                    <nls description="Kaynakları Seç" languageCode="tr" name="Kaynakları Seç"/>
+                    <nls description="选择资源" languageCode="zh" name="选择资源"/>
+                    <nls description="選取資源" languageCode="zh_TW" name="選取資源"/>
+                </singleSelectPageTitles>
+                <multiSelectPageTitles>
+                    <nls description="Seleccionar recursos" languageCode="ca" name="Seleccionar recursos"/>
+                    <nls description="Vybrat zdroje" languageCode="cs" name="Vybrat zdroje"/>
+                    <nls description="Vælg ressourcer" languageCode="da" name="Vælg ressourcer"/>
+                    <nls description="Ressourcen auswählen" languageCode="de" name="Ressourcen auswählen"/>
+                    <nls description="Select Resources" languageCode="en" name="Select Resources"/>
+                    <nls description="Seleccionar recursos" languageCode="es" name="Seleccionar recursos"/>
+                    <nls description="Valitse resurssit" languageCode="fi" name="Valitse resurssit"/>
+                    <nls description="Sélectionner des ressources" languageCode="fr" name="Sélectionner des ressources"/>
+                    <nls description="Erőforrások kiválasztása" languageCode="hu" name="Erőforrások kiválasztása"/>
+                    <nls description="Seleziona risorse" languageCode="it" name="Seleziona risorse"/>
+                    <nls description="リソースの選択" languageCode="ja" name="リソースの選択"/>
+                    <nls description="리소스 선택" languageCode="ko" name="리소스 선택"/>
+                    <nls description="Resources selecteren" languageCode="nl" name="Resources selecteren"/>
+                    <nls description="Velg ressurser" languageCode="no" name="Velg ressurser"/>
+                    <nls description="Wybierz zasoby" languageCode="pl" name="Wybierz zasoby"/>
+                    <nls description="Selecionar recursos" languageCode="pt" name="Selecionar recursos"/>
+                    <nls description="Выберите ресурсы" languageCode="ru" name="Выберите ресурсы"/>
+                    <nls description="Välj resurser" languageCode="sv" name="Välj resurser"/>
+                    <nls description="Kaynakları Seç" languageCode="tr" name="Kaynakları Seç"/>
+                    <nls description="选择资源" languageCode="zh" name="选择资源"/>
+                    <nls description="選取資源" languageCode="zh_TW" name="選取資源"/>
+                </multiSelectPageTitles>
+                <filter code="unique_name" defaultValue="" order="3" widgetType="text">
+                    <nls description="No existeix cap descripció" languageCode="ca" name="ID del recurs"/>
+                    <nls description="Bez popisu" languageCode="cs" name="ID zdroje"/>
+                    <nls description="Ingen beskrivelse" languageCode="da" name="Ressource-id"/>
+                    <nls description="Keine Beschreibung" languageCode="de" name="Ressourcen-ID"/>
+                    <nls description="No description" languageCode="en" name="Resource ID"/>
+                    <nls description="No existe ninguna descripción" languageCode="es" name="ID del recurso"/>
+                    <nls description="Ei kuvausta" languageCode="fi" name="Resurssin tunnus"/>
+                    <nls description="Aucune description" languageCode="fr" name="ID de la ressource"/>
+                    <nls description="Nincs leírás" languageCode="hu" name="Erőforrás-azonosító"/>
+                    <nls description="Nessuna descrizione" languageCode="it" name="ID risorsa"/>
+                    <nls description="説明がありません" languageCode="ja" name="リソース ID"/>
+                    <nls description="설명 없음" languageCode="ko" name="리소스 ID"/>
+                    <nls description="Geen omschrijving" languageCode="nl" name="Id resource"/>
+                    <nls description="Ingen beskrivelse" languageCode="no" name="Ressurs-ID"/>
+                    <nls description="Brak opisu" languageCode="pl" name="Identyfikator zasobu"/>
+                    <nls description="Nenhuma descrição" languageCode="pt" name="ID do recurso"/>
+                    <nls description="Нет описания" languageCode="ru" name="Код ресурса"/>
+                    <nls description="Ingen beskrivning" languageCode="sv" name="Resurs-ID"/>
+                    <nls description="Açıklama yok" languageCode="tr" name="Kaynak Kimliği"/>
+                    <nls description="无说明" languageCode="zh" name="资源 ID"/>
+                    <nls description="沒有說明" languageCode="zh_TW" name="資源 ID"/>
+                </filter>
+                <filter code="first_name" defaultValue="" order="2" widgetType="text">
+                    <nls description="No existeix cap descripció" languageCode="ca" name="Nom"/>
+                    <nls description="Bez popisu" languageCode="cs" name="Jméno"/>
+                    <nls description="Ingen beskrivelse" languageCode="da" name="Fornavn"/>
+                    <nls description="Keine Beschreibung" languageCode="de" name="Vorname"/>
+                    <nls description="No description" languageCode="en" name="First Name"/>
+                    <nls description="No existe ninguna descripción" languageCode="es" name="Nombre"/>
+                    <nls description="Ei kuvausta" languageCode="fi" name="Etunimi"/>
+                    <nls description="Aucune description" languageCode="fr" name="Prénom"/>
+                    <nls description="Nincs leírás" languageCode="hu" name="Utónév"/>
+                    <nls description="Nessuna descrizione" languageCode="it" name="Nome"/>
+                    <nls description="説明がありません" languageCode="ja" name="名"/>
+                    <nls description="설명 없음" languageCode="ko" name="이름"/>
+                    <nls description="Geen omschrijving" languageCode="nl" name="Voornaam"/>
+                    <nls description="Ingen beskrivelse" languageCode="no" name="Fornavn"/>
+                    <nls description="Brak opisu" languageCode="pl" name="Imię"/>
+                    <nls description="Nenhuma descrição" languageCode="pt" name="Nome"/>
+                    <nls description="Нет описания" languageCode="ru" name="Имя"/>
+                    <nls description="Ingen beskrivning" languageCode="sv" name="Förnamn"/>
+                    <nls description="Açıklama yok" languageCode="tr" name="Adı"/>
+                    <nls description="无说明" languageCode="zh" name="名字"/>
+                    <nls description="沒有說明" languageCode="zh_TW" name="名字"/>
+                </filter>
+                <filter code="last_name" defaultValue="" order="1" widgetType="text">
+                    <nls description="No existeix cap descripció" languageCode="ca" name="Cognoms"/>
+                    <nls description="Bez popisu" languageCode="cs" name="Příjmení"/>
+                    <nls description="Ingen beskrivelse" languageCode="da" name="Efternavn"/>
+                    <nls description="Keine Beschreibung" languageCode="de" name="Nachname"/>
+                    <nls description="No description" languageCode="en" name="Last Name"/>
+                    <nls description="No existe ninguna descripción" languageCode="es" name="Apellidos"/>
+                    <nls description="Ei kuvausta" languageCode="fi" name="Sukunimi"/>
+                    <nls description="Aucune description" languageCode="fr" name="Nom"/>
+                    <nls description="Nincs leírás" languageCode="hu" name="Vezetéknév"/>
+                    <nls description="Nessuna descrizione" languageCode="it" name="Cognome"/>
+                    <nls description="説明がありません" languageCode="ja" name="姓"/>
+                    <nls description="설명 없음" languageCode="ko" name="성"/>
+                    <nls description="Geen omschrijving" languageCode="nl" name="Achternaam"/>
+                    <nls description="Ingen beskrivelse" languageCode="no" name="Etternavn"/>
+                    <nls description="Brak opisu" languageCode="pl" name="Nazwisko"/>
+                    <nls description="Nenhuma descrição" languageCode="pt" name="Sobrenome"/>
+                    <nls description="Нет описания" languageCode="ru" name="Фамилия"/>
+                    <nls description="Ingen beskrivning" languageCode="sv" name="Efternamn"/>
+                    <nls description="Açıklama yok" languageCode="tr" name="Soyadı"/>
+                    <nls description="无说明" languageCode="zh" name="姓氏"/>
+                    <nls description="沒有說明" languageCode="zh_TW" name="姓氏"/>
+                </filter>
+                <filter code="full_name" defaultValue="" order="1" widgetType="hidden">
+                    <nls description="No existeix cap descripció" languageCode="ca" name="Nom complet"/>
+                    <nls description="Bez popisu" languageCode="cs" name="Jméno a příjmení"/>
+                    <nls description="Ingen beskrivelse" languageCode="da" name="Fuldt navn"/>
+                    <nls description="Keine Beschreibung" languageCode="de" name="Vollständiger Name"/>
+                    <nls description="No description" languageCode="en" name="Full Name"/>
+                    <nls description="No existe ninguna descripción" languageCode="es" name="Nombre completo"/>
+                    <nls description="Ei kuvausta" languageCode="fi" name="Koko nimi"/>
+                    <nls description="Aucune description" languageCode="fr" name="Nom complet"/>
+                    <nls description="Nincs leírás" languageCode="hu" name="Teljes név"/>
+                    <nls description="Nessuna descrizione" languageCode="it" name="Nome completo"/>
+                    <nls description="説明がありません" languageCode="ja" name="フル ネーム"/>
+                    <nls description="설명 없음" languageCode="ko" name="전체 이름"/>
+                    <nls description="Geen omschrijving" languageCode="nl" name="Volledige naam"/>
+                    <nls description="Ingen beskrivelse" languageCode="no" name="Fullt navn"/>
+                    <nls description="Brak opisu" languageCode="pl" name="Pełna nazwa"/>
+                    <nls description="Nenhuma descrição" languageCode="pt" name="Nome completo"/>
+                    <nls description="Нет описания" languageCode="ru" name="ФИО"/>
+                    <nls description="Ingen beskrivning" languageCode="sv" name="Hela namnet"/>
+                    <nls description="Açıklama yok" languageCode="tr" name="Tam Adı"/>
+                    <nls description="无说明" languageCode="zh" name="全名"/>
+                    <nls description="沒有說明" languageCode="zh_TW" name="完整名稱"/>
+                </filter>
+                <listColumn code="user_id" order="5" widgetType="hidden">
+                    <nls description="No existeix cap descripció" languageCode="ca" name="user_id"/>
+                    <nls description="Bez popisu" languageCode="cs" name="user_id"/>
+                    <nls description="Ingen beskrivelse" languageCode="da" name="user_id"/>
+                    <nls description="Keine Beschreibung" languageCode="de" name="user_id"/>
+                    <nls description="No description" languageCode="en" name="user_id"/>
+                    <nls description="No existe ninguna descripción" languageCode="es" name="user_id"/>
+                    <nls description="Ei kuvausta" languageCode="fi" name="user_id"/>
+                    <nls description="Aucune description" languageCode="fr" name="user_id"/>
+                    <nls description="Nincs leírás" languageCode="hu" name="user_id"/>
+                    <nls description="Nessuna descrizione" languageCode="it" name="user_id"/>
+                    <nls description="説明がありません" languageCode="ja" name="user_id"/>
+                    <nls description="설명 없음" languageCode="ko" name="user_id"/>
+                    <nls description="Geen omschrijving" languageCode="nl" name="user_id"/>
+                    <nls description="Ingen beskrivelse" languageCode="no" name="user_id"/>
+                    <nls description="Brak opisu" languageCode="pl" name="user_id"/>
+                    <nls description="Nenhuma descrição" languageCode="pt" name="user_id"/>
+                    <nls description="Нет описания" languageCode="ru" name="user_id"/>
+                    <nls description="Ingen beskrivning" languageCode="sv" name="user_id"/>
+                    <nls description="Açıklama yok" languageCode="tr" name="user_id"/>
+                    <nls description="无说明" languageCode="zh" name="user_id"/>
+                    <nls description="沒有說明" languageCode="zh_TW" name="user_id"/>
+                </listColumn>
+                <listColumn code="unique_name" order="3" widgetType="text">
+                    <nls description="No existeix cap descripció" languageCode="ca" name="ID del recurs"/>
+                    <nls description="Bez popisu" languageCode="cs" name="ID zdroje"/>
+                    <nls description="Ingen beskrivelse" languageCode="da" name="Ressource-id"/>
+                    <nls description="Keine Beschreibung" languageCode="de" name="Ressourcen-ID"/>
+                    <nls description="No description" languageCode="en" name="Resource ID"/>
+                    <nls description="No existe ninguna descripción" languageCode="es" name="ID del recurso"/>
+                    <nls description="Ei kuvausta" languageCode="fi" name="Resurssin tunnus"/>
+                    <nls description="Aucune description" languageCode="fr" name="ID de la ressource"/>
+                    <nls description="Nincs leírás" languageCode="hu" name="Erőforrás-azonosító"/>
+                    <nls description="Nessuna descrizione" languageCode="it" name="ID risorsa"/>
+                    <nls description="説明がありません" languageCode="ja" name="リソース ID"/>
+                    <nls description="설명 없음" languageCode="ko" name="리소스 ID"/>
+                    <nls description="Geen omschrijving" languageCode="nl" name="Id resource"/>
+                    <nls description="Ingen beskrivelse" languageCode="no" name="Ressurs-ID"/>
+                    <nls description="Brak opisu" languageCode="pl" name="Identyfikator zasobu"/>
+                    <nls description="Nenhuma descrição" languageCode="pt" name="ID do recurso"/>
+                    <nls description="Нет описания" languageCode="ru" name="Код ресурса"/>
+                    <nls description="Ingen beskrivning" languageCode="sv" name="Resurs-ID"/>
+                    <nls description="Açıklama yok" languageCode="tr" name="Kaynak Kimliği"/>
+                    <nls description="无说明" languageCode="zh" name="资源 ID"/>
+                    <nls description="沒有說明" languageCode="zh_TW" name="資源 ID"/>
+                </listColumn>
+                <listColumn code="first_name" order="2" widgetType="text">
+                    <nls description="No existeix cap descripció" languageCode="ca" name="Nom"/>
+                    <nls description="Bez popisu" languageCode="cs" name="Jméno"/>
+                    <nls description="Ingen beskrivelse" languageCode="da" name="Fornavn"/>
+                    <nls description="Keine Beschreibung" languageCode="de" name="Vorname"/>
+                    <nls description="No description" languageCode="en" name="First Name"/>
+                    <nls description="No existe ninguna descripción" languageCode="es" name="Nombre"/>
+                    <nls description="Ei kuvausta" languageCode="fi" name="Etunimi"/>
+                    <nls description="Aucune description" languageCode="fr" name="Prénom"/>
+                    <nls description="Nincs leírás" languageCode="hu" name="Utónév"/>
+                    <nls description="Nessuna descrizione" languageCode="it" name="Nome"/>
+                    <nls description="説明がありません" languageCode="ja" name="名"/>
+                    <nls description="설명 없음" languageCode="ko" name="이름"/>
+                    <nls description="Geen omschrijving" languageCode="nl" name="Voornaam"/>
+                    <nls description="Ingen beskrivelse" languageCode="no" name="Fornavn"/>
+                    <nls description="Brak opisu" languageCode="pl" name="Imię"/>
+                    <nls description="Nenhuma descrição" languageCode="pt" name="Nome"/>
+                    <nls description="Нет описания" languageCode="ru" name="Имя"/>
+                    <nls description="Ingen beskrivning" languageCode="sv" name="Förnamn"/>
+                    <nls description="Açıklama yok" languageCode="tr" name="Adı"/>
+                    <nls description="无说明" languageCode="zh" name="名字"/>
+                    <nls description="沒有說明" languageCode="zh_TW" name="名字"/>
+                </listColumn>
+                <listColumn code="last_name" order="1" widgetType="text">
+                    <nls description="No existeix cap descripció" languageCode="ca" name="Cognoms"/>
+                    <nls description="Bez popisu" languageCode="cs" name="Příjmení"/>
+                    <nls description="Ingen beskrivelse" languageCode="da" name="Efternavn"/>
+                    <nls description="Keine Beschreibung" languageCode="de" name="Nachname"/>
+                    <nls description="No description" languageCode="en" name="Last Name"/>
+                    <nls description="No existe ninguna descripción" languageCode="es" name="Apellidos"/>
+                    <nls description="Ei kuvausta" languageCode="fi" name="Sukunimi"/>
+                    <nls description="Aucune description" languageCode="fr" name="Nom"/>
+                    <nls description="Nincs leírás" languageCode="hu" name="Vezetéknév"/>
+                    <nls description="Nessuna descrizione" languageCode="it" name="Cognome"/>
+                    <nls description="説明がありません" languageCode="ja" name="姓"/>
+                    <nls description="설명 없음" languageCode="ko" name="성"/>
+                    <nls description="Geen omschrijving" languageCode="nl" name="Achternaam"/>
+                    <nls description="Ingen beskrivelse" languageCode="no" name="Etternavn"/>
+                    <nls description="Brak opisu" languageCode="pl" name="Nazwisko"/>
+                    <nls description="Nenhuma descrição" languageCode="pt" name="Sobrenome"/>
+                    <nls description="Нет описания" languageCode="ru" name="Фамилия"/>
+                    <nls description="Ingen beskrivning" languageCode="sv" name="Efternamn"/>
+                    <nls description="Açıklama yok" languageCode="tr" name="Soyadı"/>
+                    <nls description="无说明" languageCode="zh" name="姓氏"/>
+                    <nls description="沒有說明" languageCode="zh_TW" name="姓氏"/>
+                </listColumn>
+                <listColumn code="full_name" order="6" widgetType="hidden">
+                    <nls description="No existeix cap descripció" languageCode="ca" name="Nom complet"/>
+                    <nls description="Bez popisu" languageCode="cs" name="Jméno a příjmení"/>
+                    <nls description="Ingen beskrivelse" languageCode="da" name="Fuldt navn"/>
+                    <nls description="Keine Beschreibung" languageCode="de" name="Vollständiger Name"/>
+                    <nls description="No description" languageCode="en" name="Full Name"/>
+                    <nls description="No existe ninguna descripción" languageCode="es" name="Nombre completo"/>
+                    <nls description="Ei kuvausta" languageCode="fi" name="Koko nimi"/>
+                    <nls description="Aucune description" languageCode="fr" name="Nom complet"/>
+                    <nls description="Nincs leírás" languageCode="hu" name="Teljes név"/>
+                    <nls description="Nessuna descrizione" languageCode="it" name="Nome completo"/>
+                    <nls description="説明がありません" languageCode="ja" name="フル ネーム"/>
+                    <nls description="설명 없음" languageCode="ko" name="전체 이름"/>
+                    <nls description="Geen omschrijving" languageCode="nl" name="Volledige naam"/>
+                    <nls description="Ingen beskrivelse" languageCode="no" name="Fullt navn"/>
+                    <nls description="Brak opisu" languageCode="pl" name="Pełna nazwa"/>
+                    <nls description="Nenhuma descrição" languageCode="pt" name="Nome completo"/>
+                    <nls description="Нет описания" languageCode="ru" name="ФИО"/>
+                    <nls description="Ingen beskrivning" languageCode="sv" name="Hela namnet"/>
+                    <nls description="Açıklama yok" languageCode="tr" name="Tam Adı"/>
+                    <nls description="无说明" languageCode="zh" name="全名"/>
+                    <nls description="沒有說明" languageCode="zh_TW" name="完整名稱"/>
+                </listColumn>
+            </browsePage>
+        </dynamicLookup>
+        <dynamicLookup autoSuggestEnabled="true" autoSuggestMaxSuggestions="10" code="LOOKUP_INVESTMENT_QUICK_ADD" displayAttributeName="name"
+                       hiddenAttributeName="id" objectCode="" sortAttributeName="name" sortDirection="asc" source="niku.com" status="active" update="true">
+        <nls
+                description="[ca: Ç A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ü][[BBKF0]]"
+                languageCode="ca" name="[ca: Ç Active Investments Browse    ü][[BBKQ0]]"/>
+        <nls
+                description="[cs: Š A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ý][[BBKF0]]"
+                languageCode="cs" name="[cs: Š Active Investments Browse    ý][[BBKQ0]]"/>
+        <nls
+                description="[da: Æ A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ø][[BBKF0]]"
+                languageCode="da" name="[da: Æ Active Investments Browse    ø][[BBKQ0]]"/>
+        <nls
+                description="Eine Liste der aktiven, nicht-vorlagenbasierten, nicht-programmbasierten Projekte, Ideen und benutzerdefinierten Investitionen, auf die der Benutzer Zugriff hat."
+                languageCode="de" name="Suche nach aktiven Investitionen"/>
+        <nls description="A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access."
+             languageCode="en" name="Active Investments Browse"/>
+        <nls
+                description="Una lista de proyectos, ideas e inversiones personalizadas activos que no son de plantilla ni de programa y para los que el usuario tiene acceso."
+                languageCode="es" name="Exploración de inversiones activas"/>
+        <nls
+                description="[fi: ä A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ö][[BBKF0]]"
+                languageCode="fi" name="[fi: ä Active Investments Browse    ö][[BBKQ0]]"/>
+        <nls
+                description="Liste de projets, d'idées et d'investissements personnalisés actifs, qui ne sont pas des modèles et qui ne sont pas des programmes auxquelles l'utilisateur a accès."
+                languageCode="fr" name="Parcourir les investissements actifs"/>
+        <nls
+                description="[hu: ä A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ü][[BBKF0]]"
+                languageCode="hu" name="[hu: ä Active Investments Browse    ü][[BBKQ0]]"/>
+        <nls
+                description="Un elenco dei progetti non di modello, non di programma e delle idee e degli investimenti personalizzati attivi per i quali l'utente dispone dell'accesso."
+                languageCode="it" name="Sfoglia investimenti attivi"/>
+        <nls description="ユーザがアクセス権を持つ、アクティブ、非テンプレート、非プログラムのプロジェクト、アイデア、およびカスタム投資のリスト。" languageCode="ja" name="アクティブな投資の参照"/>
+        <nls
+                description="[ko: 검 A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      색][[BBKF0]]"
+                languageCode="ko" name="[ko: 검 Active Investments Browse    색][[BBKQ0]]"/>
+        <nls
+                description="[nl: ÿ A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ÿ][[BBKF0]]"
+                languageCode="nl" name="[nl: ÿ Active Investments Browse    ÿ][[BBKQ0]]"/>
+        <nls
+                description="[no: å A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ø][[BBKF0]]"
+                languageCode="no" name="[no: å Active Investments Browse    ø][[BBKQ0]]"/>
+        <nls
+                description="[pl: ę A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ź][[BBKF0]]"
+                languageCode="pl" name="[pl: ę Active Investments Browse    ź][[BBKQ0]]"/>
+        <nls
+                description="Uma lista de Projetos, Ideias e Investimentos personalizados ativos, que não foram criados com base em um modelo ou programa e aos quais o usuário tem acesso."
+                languageCode="pt" name="Procura de investimentos ativos"/>
+        <nls
+                description="[ru: Д A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      я][[BBKF0]]"
+                languageCode="ru" name="[ru: Д Active Investments Browse    я][[BBKQ0]]"/>
+        <nls
+                description="[sv: Å A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ö][[BBKF0]]"
+                languageCode="sv" name="[sv: Å Active Investments Browse    ö][[BBKQ0]]"/>
+        <nls
+                description="[tr: Ğ A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      ş][[BBKF0]]"
+                languageCode="tr" name="[tr: Ğ Active Investments Browse    ş][[BBKQ0]]"/>
+        <nls
+                description="[zh: 音 A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                      乐][[BBKF0]]"
+                languageCode="zh" name="[zh: 音 Active Investments Browse    乐][[BBKQ0]]"/>
+        <nls
+                description="[zh_TW: 搜 A list of active, non-template, non-program Projects, Ideas and Custom Investments for which the user has access.                                   尋][[BBKF0]]"
+                languageCode="zh_TW" name="[zh_TW: 搜 Active Investments Browse 尋][[BBKQ0]]"/>
+        <nsql databaseId="Niku" dbVendor="all"><![CDATA[SELECT @SELECT:INV.ID:ID@
+                  ,@SELECT:INV.CODE:CODE@
+                  ,@SELECT:INV.NAME:NAME@
+                  ,@SELECT:INV.ODF_OBJECT_CODE:OBJECT_CODE@
+                  ,@SELECT:CAP.NAME:TYPE_NAME@
+                FROM INV_INVESTMENTS INV JOIN (
+			      select
+                  S.ID SEC_ID,
+                  O.ID OBJECT_ID,
+                  O.CODE OBJECT_CODE
+                  from
+                      ODF_OBJECT_EXTENSIONS OE,
+                      ODF_OBJECTS O,
+                      CMN_SEC_OBJECTS S
+                  where
+                      O.CODE = OE.OBJECT_CODE
+                      and OE.EXTENSION_CODE = 'inv'
+                      and S.OBJECT_TYPE_CODE = 'RECORD'
+                      and S.COMPONENT_CODE = 'INV'
+                      and S.OBJECT_CODE in (O.RIGHT_CODE, CONCAT('odf_cst_', O.RIGHT_CODE))
+                      and O.CODE not in ('service', 'asset', 'product', 'application', 'other')
+              ) obj_info on INV.ODF_OBJECT_CODE = obj_info.OBJECT_CODE
+		join CMN_CAPTIONS_NLS CAP on
+			obj_info.OBJECT_ID = CAP.PK_ID
+			and CAP.TABLE_NAME = 'ODF_OBJECTS'
+			and CAP.LANGUAGE_CODE = @WHERE:PARAM:LANGUAGE_CODE@
+		left join INV_PROJECTS PRJ on INV.ID = PRJ.PRID
+		WHERE
+			@FILTER@
+			@BROWSE-ONLY:
+			and (
+              exists (
+                select
+                    'x' from CMN_SEC_CHK_USER_R_V GLB
+                where
+                    GLB.USER_ID = @WHERE:PARAM:USER_ID@
+                    and GLB.OBJECT_ID = obj_info.SEC_ID
+                    and GLB.OBJECT_TYPE = 'RECORD'
+                    and GLB.COMPONENT_CODE = 'INV'
+                    and GLB.PERMISSION_CODE = 'InvestmentViewManagement' )
+              or exists (
+                  select
+                      'x' from CMN_SEC_CHK_USER_V0 INST
+                  where
+                      INST.USER_ID = @WHERE:PARAM:USER_ID@
+                      and obj_info.SEC_ID = INST.OBJECT_ID
+                      and INST.OBJECT_INSTANCE_ID = INV.ID
+                      and INST.PERMISSION_CODE = 'InvestmentViewManagement' )
+            )
+			and @NVL@(PRJ.IS_PROGRAM, 0) = 0
+			and INV.ODF_TEMPLATE = 0
+			and INV.IS_ACTIVE = 1 :BROWSE-ONLY@]]></nsql>
+        <displayedSuggestionAttributes>
+            <displayedSuggestionAttribute value="name"/>
+            <displayedSuggestionAttribute value="code"/>
+            <displayedSuggestionAttribute value="type_name"/>
+        </displayedSuggestionAttributes>
+        <searchedSuggestionAttributes>
+            <searchedSuggestionAttribute value="name"/>
+            <searchedSuggestionAttribute value="code"/>
+            <searchedSuggestionAttribute value="type_name"/>
+        </searchedSuggestionAttributes>
+        <browsePage>
+            <singleSelectPageTitles>
+                <nls description="Seleccionar inversions" languageCode="ca" name="Seleccionar inversions"/>
+                <nls description="Vybrat investice" languageCode="cs" name="Vybrat investice"/>
+                <nls description="Vælg investeringer" languageCode="da" name="Vælg investeringer"/>
+                <nls description="Investitionen auswählen" languageCode="de" name="Investitionen auswählen"/>
+                <nls description="Select Investments" languageCode="en" name="Select Investments"/>
+                <nls description="Seleccionar inversiones" languageCode="es" name="Seleccionar inversiones"/>
+                <nls description="Valitse investoinnit" languageCode="fi" name="Valitse investoinnit"/>
+                <nls description="Sélectionner des investissements" languageCode="fr" name="Sélectionner des investissements"/>
+                <nls description="Befektetések kiválasztása" languageCode="hu" name="Befektetések kiválasztása"/>
+                <nls description="Seleziona investimenti" languageCode="it" name="Seleziona investimenti"/>
+                <nls description="投資の選択" languageCode="ja" name="投資の選択"/>
+                <nls description="투자 선택" languageCode="ko" name="투자 선택"/>
+                <nls description="Investeringen selecteren" languageCode="nl" name="Investeringen selecteren"/>
+                <nls description="Velg investeringer" languageCode="no" name="Velg investeringer"/>
+                <nls description="Wybierz inwestycje" languageCode="pl" name="Wybierz inwestycje"/>
+                <nls description="Selecionar investimentos" languageCode="pt" name="Selecionar investimentos"/>
+                <nls description="Выберите инвестиции" languageCode="ru" name="Выберите инвестиции"/>
+                <nls description="Välj investeringar" languageCode="sv" name="Välj investeringar"/>
+                <nls description="Yatırımları Seç" languageCode="tr" name="Yatırımları Seç"/>
+                <nls description="选择投资" languageCode="zh" name="选择投资"/>
+                <nls description="選取投資" languageCode="zh_TW" name="選取投資"/>
+            </singleSelectPageTitles>
+            <multiSelectPageTitles>
+                <nls description="Seleccionar inversió" languageCode="ca" name="Seleccionar inversió"/>
+                <nls description="Vybrat investici" languageCode="cs" name="Vybrat investici"/>
+                <nls description="Vælg investering" languageCode="da" name="Vælg investering"/>
+                <nls description="Investition auswählen" languageCode="de" name="Investition auswählen"/>
+                <nls description="Select Investment" languageCode="en" name="Select Investment"/>
+                <nls description="Seleccionar inversión" languageCode="es" name="Seleccionar inversión"/>
+                <nls description="Valitse investointi" languageCode="fi" name="Valitse investointi"/>
+                <nls description="Sélectionner un investissement" languageCode="fr" name="Sélectionner un investissement"/>
+                <nls description="Befektetés kiválasztása" languageCode="hu" name="Befektetés kiválasztása"/>
+                <nls description="Seleziona investimento" languageCode="it" name="Seleziona investimento"/>
+                <nls description="投資の選択" languageCode="ja" name="投資の選択"/>
+                <nls description="투자 선택" languageCode="ko" name="투자 선택"/>
+                <nls description="Investering selecteren" languageCode="nl" name="Investering selecteren"/>
+                <nls description="Velg investering" languageCode="no" name="Velg investering"/>
+                <nls description="Wybierz inwestycję" languageCode="pl" name="Wybierz inwestycję"/>
+                <nls description="Selecionar investimento" languageCode="pt" name="Selecionar investimento"/>
+                <nls description="Выберите инвестицию" languageCode="ru" name="Выберите инвестицию"/>
+                <nls description="Välj investering" languageCode="sv" name="Välj investering"/>
+                <nls description="Yatırım Seç" languageCode="tr" name="Yatırım Seç"/>
+                <nls description="选择投资" languageCode="zh" name="选择投资"/>
+                <nls description="選取投資" languageCode="zh_TW" name="選取投資"/>
+            </multiSelectPageTitles>
+            <filter code="code" defaultValue="" order="2" widgetType="text">
+                <nls description="ID de la inversió" languageCode="ca" name="ID de la inversió"/>
+                <nls description="ID investice" languageCode="cs" name="ID investice"/>
+                <nls description="Investerings-id" languageCode="da" name="Investerings-id"/>
+                <nls description="Investitions-ID" languageCode="de" name="Investitions-ID"/>
+                <nls description="Investment ID" languageCode="en" name="Investment ID"/>
+                <nls description="ID de la inversión" languageCode="es" name="ID de la inversión"/>
+                <nls description="Investoinnin tunnus" languageCode="fi" name="Investoinnin tunnus"/>
+                <nls description="ID de l'investissement" languageCode="fr" name="ID de l'investissement"/>
+                <nls description="Befektetésazonosító" languageCode="hu" name="Befektetésazonosító"/>
+                <nls description="ID investimento" languageCode="it" name="ID investimento"/>
+                <nls description="投資 ID" languageCode="ja" name="投資 ID"/>
+                <nls description="투자 ID" languageCode="ko" name="투자 ID"/>
+                <nls description="Id investering" languageCode="nl" name="Id investering"/>
+                <nls description="Investerings-ID" languageCode="no" name="Investerings-ID"/>
+                <nls description="Identyfikator inwestycji" languageCode="pl" name="Identyfikator inwestycji"/>
+                <nls description="ID do investimento" languageCode="pt" name="ID do investimento"/>
+                <nls description="Код инвестиции" languageCode="ru" name="Код инвестиции"/>
+                <nls description="Investerings-ID" languageCode="sv" name="Investerings-ID"/>
+                <nls description="Yatırım Kimliği" languageCode="tr" name="Yatırım Kimliği"/>
+                <nls description="投资 ID" languageCode="zh" name="投资 ID"/>
+                <nls description="投資 ID" languageCode="zh_TW" name="投資 ID"/>
+            </filter>
+            <filter code="name" defaultValue="" order="1" widgetType="text">
+                <nls description="Nom de la inversió" languageCode="ca" name="Nom de la inversió"/>
+                <nls description="Název investice" languageCode="cs" name="Název investice"/>
+                <nls description="Investeringsnavn" languageCode="da" name="Investeringsnavn"/>
+                <nls description="Investitionsname" languageCode="de" name="Investitionsname"/>
+                <nls description="Investment Name" languageCode="en" name="Investment Name"/>
+                <nls description="Nombre de la inversión" languageCode="es" name="Nombre de la inversión"/>
+                <nls description="Investoinnin nimi" languageCode="fi" name="Investoinnin nimi"/>
+                <nls description="Nom de l'investissement" languageCode="fr" name="Nom de l'investissement"/>
+                <nls description="Befektetés neve" languageCode="hu" name="Befektetés neve"/>
+                <nls description="Nome investimento" languageCode="it" name="Nome investimento"/>
+                <nls description="投資名" languageCode="ja" name="投資名"/>
+                <nls description="투자 이름" languageCode="ko" name="투자 이름"/>
+                <nls description="Naam investering" languageCode="nl" name="Naam investering"/>
+                <nls description="Investeringsnavn" languageCode="no" name="Investeringsnavn"/>
+                <nls description="Nazwa inwestycji" languageCode="pl" name="Nazwa inwestycji"/>
+                <nls description="Nome do investimento" languageCode="pt" name="Nome do investimento"/>
+                <nls description="Наименование инвестиции" languageCode="ru" name="Наименование инвестиции"/>
+                <nls description="Investeringsnamn" languageCode="sv" name="Investeringsnamn"/>
+                <nls description="Yatırım Adı" languageCode="tr" name="Yatırım Adı"/>
+                <nls description="投资名称" languageCode="zh" name="投资名称"/>
+                <nls description="投資名稱" languageCode="zh_TW" name="投資名稱"/>
+            </filter>
+            <filter code="object_code" defaultValue="" lookupCode="INV_BROWSE_NON_NPIO" order="3" widgetType="select">
+                <nls description="Tipus d'inversió" languageCode="ca" name="Tipus d'inversió"/>
+                <nls description="Typ investice" languageCode="cs" name="Typ investice"/>
+                <nls description="Investeringstype" languageCode="da" name="Investeringstype"/>
+                <nls description="Investitionstyp" languageCode="de" name="Investitionstyp"/>
+                <nls description="Investment Type" languageCode="en" name="Investment Type"/>
+                <nls description="Tipo de inversión" languageCode="es" name="Tipo de inversión"/>
+                <nls description="Investointityyppi" languageCode="fi" name="Investointityyppi"/>
+                <nls description="Type d'investissement" languageCode="fr" name="Type d'investissement"/>
+                <nls description="Befektetés típusa" languageCode="hu" name="Befektetés típusa"/>
+                <nls description="Tipo di investimento" languageCode="it" name="Tipo di investimento"/>
+                <nls description="投資タイプ" languageCode="ja" name="投資タイプ"/>
+                <nls description="투자 유형" languageCode="ko" name="투자 유형"/>
+                <nls description="Investeringstype" languageCode="nl" name="Investeringstype"/>
+                <nls description="Investeringstype" languageCode="no" name="Investeringstype"/>
+                <nls description="Typ inwestycji" languageCode="pl" name="Typ inwestycji"/>
+                <nls description="Tipo de investimento" languageCode="pt" name="Tipo de investimento"/>
+                <nls description="Тип инвестиции" languageCode="ru" name="Тип инвестиции"/>
+                <nls description="Investeringstyp" languageCode="sv" name="Investeringstyp"/>
+                <nls description="Yatırım Türü" languageCode="tr" name="Yatırım Türü"/>
+                <nls description="投资类型" languageCode="zh" name="投资类型"/>
+                <nls description="投資類型" languageCode="zh_TW" name="投資類型"/>
+            </filter>
+            <listColumn code="id" order="4" widgetType="hidden">
+                <nls description="[hidden]: ID" languageCode="ca" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="cs" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="da" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="de" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="en" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="es" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="fi" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="fr" name="[hidden]: ID"/>
+                <nls description="[hidden]: Azonosító" languageCode="hu" name="[hidden]: Azonosító"/>
+                <nls description="[hidden]: ID" languageCode="it" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="ja" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="ko" name="[hidden]: ID"/>
+                <nls description="[hidden]: Id" languageCode="nl" name="[hidden]: Id"/>
+                <nls description="[hidden]: ID" languageCode="no" name="[hidden]: ID"/>
+                <nls description="[hidden]: identyfikator" languageCode="pl" name="[hidden]: identyfikator"/>
+                <nls description="[hidden]: ID" languageCode="pt" name="[hidden]: ID"/>
+                <nls description="[hidden]: Код" languageCode="ru" name="[hidden]: Код"/>
+                <nls description="[hidden]: ID" languageCode="sv" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="tr" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="zh" name="[hidden]: ID"/>
+                <nls description="[hidden]: ID" languageCode="zh_TW" name="[hidden]: ID"/>
+            </listColumn>
+            <listColumn code="code" order="2" widgetType="text">
+                <nls description="ID de la inversió" languageCode="ca" name="ID de la inversió"/>
+                <nls description="ID investice" languageCode="cs" name="ID investice"/>
+                <nls description="Investerings-id" languageCode="da" name="Investerings-id"/>
+                <nls description="Investitions-ID" languageCode="de" name="Investitions-ID"/>
+                <nls description="Investment ID" languageCode="en" name="Investment ID"/>
+                <nls description="ID de la inversión" languageCode="es" name="ID de la inversión"/>
+                <nls description="Investoinnin tunnus" languageCode="fi" name="Investoinnin tunnus"/>
+                <nls description="ID de l'investissement" languageCode="fr" name="ID de l'investissement"/>
+                <nls description="Befektetésazonosító" languageCode="hu" name="Befektetésazonosító"/>
+                <nls description="ID investimento" languageCode="it" name="ID investimento"/>
+                <nls description="投資 ID" languageCode="ja" name="投資 ID"/>
+                <nls description="투자 ID" languageCode="ko" name="투자 ID"/>
+                <nls description="Id investering" languageCode="nl" name="Id investering"/>
+                <nls description="Investerings-ID" languageCode="no" name="Investerings-ID"/>
+                <nls description="Identyfikator inwestycji" languageCode="pl" name="Identyfikator inwestycji"/>
+                <nls description="ID do investimento" languageCode="pt" name="ID do investimento"/>
+                <nls description="Код инвестиции" languageCode="ru" name="Код инвестиции"/>
+                <nls description="Investerings-ID" languageCode="sv" name="Investerings-ID"/>
+                <nls description="Yatırım Kimliği" languageCode="tr" name="Yatırım Kimliği"/>
+                <nls description="投资 ID" languageCode="zh" name="投资 ID"/>
+                <nls description="投資 ID" languageCode="zh_TW" name="投資 ID"/>
+            </listColumn>
+            <listColumn code="name" order="1" widgetType="text">
+                <nls description="Nom de la inversió" languageCode="ca" name="Nom de la inversió"/>
+                <nls description="Název investice" languageCode="cs" name="Název investice"/>
+                <nls description="Investeringsnavn" languageCode="da" name="Investeringsnavn"/>
+                <nls description="Investitionsname" languageCode="de" name="Investitionsname"/>
+                <nls description="Investment Name" languageCode="en" name="Investment Name"/>
+                <nls description="Nombre de la inversión" languageCode="es" name="Nombre de la inversión"/>
+                <nls description="Investoinnin nimi" languageCode="fi" name="Investoinnin nimi"/>
+                <nls description="Nom de l'investissement" languageCode="fr" name="Nom de l'investissement"/>
+                <nls description="Befektetés neve" languageCode="hu" name="Befektetés neve"/>
+                <nls description="Nome investimento" languageCode="it" name="Nome investimento"/>
+                <nls description="投資名" languageCode="ja" name="投資名"/>
+                <nls description="투자 이름" languageCode="ko" name="투자 이름"/>
+                <nls description="Naam investering" languageCode="nl" name="Naam investering"/>
+                <nls description="Investeringsnavn" languageCode="no" name="Investeringsnavn"/>
+                <nls description="Nazwa inwestycji" languageCode="pl" name="Nazwa inwestycji"/>
+                <nls description="Nome do investimento" languageCode="pt" name="Nome do investimento"/>
+                <nls description="Наименование инвестиции" languageCode="ru" name="Наименование инвестиции"/>
+                <nls description="Investeringsnamn" languageCode="sv" name="Investeringsnamn"/>
+                <nls description="Yatırım Adı" languageCode="tr" name="Yatırım Adı"/>
+                <nls description="投资名称" languageCode="zh" name="投资名称"/>
+                <nls description="投資名稱" languageCode="zh_TW" name="投資名稱"/>
+            </listColumn>
+            <listColumn code="type_name" order="3" widgetType="text">
+                <nls description="Tipus d'inversió" languageCode="ca" name="Tipus d'inversió"/>
+                <nls description="Typ investice" languageCode="cs" name="Typ investice"/>
+                <nls description="Investeringstype" languageCode="da" name="Investeringstype"/>
+                <nls description="Investitionstyp" languageCode="de" name="Investitionstyp"/>
+                <nls description="Investment Type" languageCode="en" name="Investment Type"/>
+                <nls description="Tipo de inversión" languageCode="es" name="Tipo de inversión"/>
+                <nls description="Investointityyppi" languageCode="fi" name="Investointityyppi"/>
+                <nls description="Type d'investissement" languageCode="fr" name="Type d'investissement"/>
+                <nls description="Befektetés típusa" languageCode="hu" name="Befektetés típusa"/>
+                <nls description="Tipo di investimento" languageCode="it" name="Tipo di investimento"/>
+                <nls description="投資タイプ" languageCode="ja" name="投資タイプ"/>
+                <nls description="투자 유형" languageCode="ko" name="투자 유형"/>
+                <nls description="Investeringstype" languageCode="nl" name="Investeringstype"/>
+                <nls description="Investeringstype" languageCode="no" name="Investeringstype"/>
+                <nls description="Typ inwestycji" languageCode="pl" name="Typ inwestycji"/>
+                <nls description="Tipo de investimento" languageCode="pt" name="Tipo de investimento"/>
+                <nls description="Тип инвестиции" languageCode="ru" name="Тип инвестиции"/>
+                <nls description="Investeringstyp" languageCode="sv" name="Investeringstyp"/>
+                <nls description="Yatırım Türü" languageCode="tr" name="Yatırım Türü"/>
+                <nls description="投资类型" languageCode="zh" name="投资类型"/>
+                <nls description="投資類型" languageCode="zh_TW" name="投資類型"/>
+            </listColumn>
+        </browsePage>
+        <displayedSuggestionAttributes>
+            <displayedSuggestionAttribute value="name"/>
+        </displayedSuggestionAttributes>
+        <searchedSuggestionAttributes>
+            <searchedSuggestionAttribute value="name"/>
+        </searchedSuggestionAttributes>
+    </contentPack>
+</NikuDataBus>
